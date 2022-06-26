@@ -4,13 +4,7 @@ import Error404 from './components/Error404';
 import HomePage from './components/HomePage';
 import GlobalStyles from './components/styles/Global';
 const Container = styledComponents.main`
-  & > section,
-  & > footer{
-    padding: 40px 5%;
-  }
-  & > header{
-    padding: 10px 5%;
-  }
+  
 `;
 
 function App() {
