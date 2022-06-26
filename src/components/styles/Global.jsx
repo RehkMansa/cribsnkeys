@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
     --fw-header: 500;
     --fw-bold: 600;
     --lh-regular: 1;
-    --ff-body: 'Katla', sans-serif;
+    --ff-body: 'Karla', sans-serif;
     --ff-header: 'Playfair Display', sans-serif;
     --gold: #f2b636;
     --blue: #070c1f;
