@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     --gold: #f2b636;
     --blue: #070c1f;
     --grey: #878c9b;
+    --white: #fff;
     overflow-x: hidden;
   }
   body {
@@ -49,7 +50,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: var(--ff-body);
     font-family: inherit;
     font-weight: 500;
-    background-color: var(--green);
+    background-color: var(--gold);
     color: var(--white);
     border: none;
     outline: none;

@@ -1,8 +1,26 @@
-const InputElement = () => {
+import styled from 'styled-components';
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    // width: 80%;
+    font-weight: 400;
+  }
+`;
+
+const InputElement = ({ placeHolder, onChange, value, type }) => {
   return (
-    <div>
-      <input type="text" />
-    </div>
+    <InputWrapper>
+      <input
+        type={type}
+        placeholder={placeHolder}
+        onChange={onChange}
+        value={value}
+      />
+    </InputWrapper>
   );
 };
 
