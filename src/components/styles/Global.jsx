@@ -66,7 +66,7 @@ const GlobalStyles = createGlobalStyle`
     border: 1px solid var(--gray4)
   }
   input::placeholder{
-    text-transform: uppercase
+    text-transform: capitalize;
   }
   button:hover,
   a:hover {

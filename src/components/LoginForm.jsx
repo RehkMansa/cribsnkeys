@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import InputElement from './InputElement';
+import { toggleStateVar } from './utils/helpers';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -31,17 +32,62 @@ const FormWrapper = styled.form`
   input {
     width: 100%;
   }
+  .formInner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    span {
+      cursor: pointer;
+      color: var(--gold);
+    }
+  }
 `;
 
 const LoginForm = () => {
+  const [logIn, setLogIn] = useState(true);
   return (
     <Wrapper>
-      <h2>Login To Your Account</h2>
-      <FormWrapper>
-        <InputElement placeHolder={'Username'} />
-        <InputElement placeHolder={'Password'} />
-        <button>Find A Crib</button>
-      </FormWrapper>
+      {logIn === true ? (
+        <>
+          <h2>Please Login</h2>
+          <FormWrapper>
+            <InputElement placeHolder={'Username'} />
+            <InputElement placeHolder={'Password'} />
+            <button>Find A Crib</button>
+            <div className="formInner">
+              <p>Don't Have An Account ?</p>
+              <span
+                onClick={() => {
+                  toggleStateVar(logIn, setLogIn);
+                }}
+              >
+                Register
+              </span>
+            </div>
+          </FormWrapper>
+        </>
+      ) : (
+        <>
+          <h2>Create a new account</h2>
+          <FormWrapper>
+            <InputElement placeHolder={'Username'} />
+            <InputElement placeHolder={'Password'} />
+            <button>Find A Crib</button>
+            <div className="formInner">
+              <p>Do you have an account ?</p>
+              <span
+                onClick={() => {
+                  toggleStateVar(logIn, setLogIn);
+                }}
+              >
+                Sign In
+              </span>
+            </div>
+          </FormWrapper>
+        </>
+      )}
     </Wrapper>
   );
 };
