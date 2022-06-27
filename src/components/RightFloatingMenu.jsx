@@ -21,7 +21,7 @@ const menuItems = [
     id: 0,
     name: 'Home',
     icon: <FiHome />,
-    link: '/users',
+    link: '/',
   },
   {
     id: 1,
