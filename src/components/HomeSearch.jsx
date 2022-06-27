@@ -2,14 +2,25 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import InputElement from './InputElement';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  padding: 20px;
+
+  h2{
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-align: center;
+  }
+`;
 
 const FormWrapper = styled.form`
   display: flex;
 
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+
+  input {
+    width: 100%;
+  }
 `;
 
 const HomeSearch = () => {
@@ -17,6 +28,7 @@ const HomeSearch = () => {
   const [numberOfDays, setNumberOfDays] = useState('');
   return (
     <Wrapper>
+      <h2>Find Your Dream Crib</h2>
       <FormWrapper>
         <InputElement placeHolder={'Location'} />
         <InputElement placeHolder={'Number Of Days'} />
