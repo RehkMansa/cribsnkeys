@@ -1,20 +1,31 @@
 import styled from 'styled-components';
 import { FiHome, FiLogIn, FiExternalLink } from 'react-icons/fi';
 import MenuItems from './MenuItems';
+import { signInWithGoogle } from './firebase/utils';
 // import { useState } from 'react';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  color: var(--blue);
+  background-color: var(--gold);
+  padding: 10px;
+  border-radius: 50px;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+`;
 
 const menuItems = [
   {
     id: 0,
-    name: home,
+    name: 'Home',
     icon: <FiHome />,
-    link: '/',
+    link: '/users',
   },
   {
     id: 1,
-    name: home,
+    name: 'Login',
     icon: <FiLogIn />,
   },
 ];
@@ -32,8 +43,8 @@ const RightFloatingMenu = () => {
         />
       ))}
 
-      <div>
-        <MenuItems icon={<FiExternalLink />} title={'Sign In'} />
+      <div onClick={signInWithGoogle}>
+        <MenuItems icon={<FiExternalLink />} title={'Google Sign In'} />
       </div>
     </Wrapper>
   );

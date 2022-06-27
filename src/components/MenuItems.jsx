@@ -6,7 +6,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: inset 0 0 10px rgba(7, 12, 31, 0.1);
   .menu-title {
   }
 `;
@@ -14,14 +17,10 @@ const Wrapper = styled.div`
 const MenuItems = ({ icon, title, link }) => {
   const navigate = useNavigate();
 
-  const redirectTo = () => {
-    navigate(link);
-  };
-
   return (
-    <Wrapper onClick={redirectTo}>
+    <Wrapper onClick={() => (link ? navigate(link) : '')}>
       {icon}
-      <div className="menu-title">{title}</div>
+      <div>{title}</div>
     </Wrapper>
   );
 };

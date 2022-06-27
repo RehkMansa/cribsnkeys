@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Cribs from './Cribs';
 import HomeSearch from './HomeSearch';
+import RightFloatingMenu from './RightFloatingMenu';
 
 const Wrapper = styled.section`
   display: flex;
@@ -30,10 +31,11 @@ const RightContainer = styled.div`
   align-items: center;
   padding: 20px 5%;
   justify-content: center;
+  position: relative;
   flex-direction: column;
   gap: 20px;
 
-  h3{
+  h3 {
     font-size: 50px;
   }
 `;
@@ -53,6 +55,7 @@ const HomePage = () => {
         </Content>
       </LeftContainer>
       <RightContainer>
+        <RightFloatingMenu />
         <h3>Browse Featured Cribs</h3>
         <Cribs />
       </RightContainer>
