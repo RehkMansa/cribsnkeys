@@ -10,8 +10,6 @@ const Wrapper = styled.div`
   border-radius: 20px;
   cursor: pointer;
   box-shadow: inset 0 0 10px rgba(7, 12, 31, 0.1);
-  .menu-title {
-  }
 `;
 
 const MenuItems = ({ icon, title, link }) => {
