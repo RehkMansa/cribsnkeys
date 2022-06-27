@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Cribs from './Cribs';
 import HomeSearch from './HomeSearch';
+import LoginForm from './LoginForm';
 import RightFloatingMenu from './RightFloatingMenu';
 
 const Wrapper = styled.section`
@@ -46,6 +48,8 @@ const Content = styled.div`
 `;
 
 const HomePage = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <Wrapper>
       <LeftContainer bgImage={'home-bg-left.jpg'}>
@@ -55,10 +59,11 @@ const HomePage = () => {
         </Content>
       </LeftContainer>
       <RightContainer>
-        <RightFloatingMenu />
+        <RightFloatingMenu loginState={showLogin} setLogin={setShowLogin} />
         <h3>Browse Featured Cribs</h3>
         <Cribs />
       </RightContainer>
+      {showLogin && <LoginForm />}
     </Wrapper>
   );
 };

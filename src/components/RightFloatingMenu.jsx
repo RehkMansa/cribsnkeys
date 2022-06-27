@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { FiHome, FiLogIn, FiExternalLink } from 'react-icons/fi';
+import { FaGoogle, FaHome } from 'react-icons/fa';
+import { RiLoginBoxFill } from 'react-icons/ri';
 import MenuItems from './MenuItems';
 import { signInWithGoogle } from './firebase/utils';
-// import { useState } from 'react';
+import { toggleStateVar } from './utils/helpers';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,22 +17,29 @@ const Wrapper = styled.div`
   right: 20px;
 `;
 
-const menuItems = [
-  {
-    id: 0,
-    name: 'Home',
-    icon: <FiHome />,
-    link: '/',
-  },
-  {
-    id: 1,
-    name: 'Login',
-    icon: <FiLogIn />,
-  },
-];
-
-const RightFloatingMenu = () => {
-  // const [menu, setMenu] = useState(menuItems);
+const RightFloatingMenu = ({ loginState, setLogin }) => {
+  const menuItems = [
+    {
+      id: 0,
+      name: 'Home',
+      icon: <FaHome />,
+      link: '/',
+    },
+    {
+      id: 1,
+      name: 'Login',
+      icon: <RiLoginBoxFill />,
+      function: () => {
+        toggleStateVar(loginState, setLogin);
+      },
+    },
+    {
+      id: 2,
+      name: 'Sign In',
+      icon: <FaGoogle />,
+      function: signInWithGoogle,
+    },
+  ];
   return (
     <Wrapper>
       {menuItems.map((menu) => (
@@ -40,12 +48,9 @@ const RightFloatingMenu = () => {
           icon={menu.icon}
           link={menu.link}
           title={menu.name}
+          onClickFunc={menu.function}
         />
       ))}
-
-      <div onClick={signInWithGoogle}>
-        <MenuItems icon={<FiExternalLink />} title={'Google Sign In'} />
-      </div>
     </Wrapper>
   );
 };

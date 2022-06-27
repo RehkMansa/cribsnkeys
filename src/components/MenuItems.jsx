@@ -12,11 +12,11 @@ const Wrapper = styled.div`
   box-shadow: inset 0 0 10px rgba(7, 12, 31, 0.1);
 `;
 
-const MenuItems = ({ icon, title, link }) => {
+const MenuItems = ({ icon, title, link, onClickFunc }) => {
   const navigate = useNavigate();
 
   return (
-    <Wrapper onClick={() => (link ? navigate(link) : '')}>
+    <Wrapper onClick={() => (link ? navigate(link) : onClickFunc())}>
       {icon}
       <div>{title}</div>
     </Wrapper>

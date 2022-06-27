@@ -61,10 +61,12 @@ const GlobalStyles = createGlobalStyle`
     padding: 9px 25px;
     font-size: var(--ff-body);
     font-family: inherit;
-    font-weight: 600;
+    font-weight: 400;
     outline:none;
-    border-radius: 5px;
     border: 1px solid var(--gray4)
+  }
+  input::placeholder{
+    text-transform: uppercase;
   }
   button:hover,
   a:hover {
