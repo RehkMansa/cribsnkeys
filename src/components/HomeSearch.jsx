@@ -1,8 +1,14 @@
+import styled from 'styled-components';
+
+const Wrapper = styled.div``;
+
+const FormWrapper = styled.div``;
+
 const HomeSearch = () => {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <Wrapper>
+      <h1>Hello World</h1>
+    </Wrapper>
   );
 };
 

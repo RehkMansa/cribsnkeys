@@ -21,11 +21,15 @@ const LeftContainer = styled.div`
   }
 `;
 const RightContainer = styled.div``;
+
+const FormWrapper = styled.form``;
+
 const HomePage = () => {
   return (
     <Wrapper>
       <LeftContainer bgImage={'home-bg-left.jpg'}>
         <div className="overlay"></div>
+        <FormWrapper></FormWrapper>
       </LeftContainer>
       <RightContainer></RightContainer>
     </Wrapper>
