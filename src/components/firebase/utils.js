@@ -10,9 +10,9 @@ import {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
-const auth = getAuth();
+export const auth = getAuth();
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -26,9 +26,7 @@ export const emailSignUp = async (email, password) => {
   await createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredentials) => {
       const user = userCredentials.user;
-      data = user;
-
-      const dataRef = await checkUserDB('users', user);
+      data = await checkUserDB('users', user);
     })
     .catch((err) => {
       errors = {
@@ -47,10 +45,10 @@ export const checkUserDB = async (dbLocation, userObj) => {
   const userSnap = await getDoc(userRef);
 
   if (!userSnap.exists()) {
-    const { email } = userObj;
+    const { email, displayName } = userObj;
 
     try {
-      await setDoc(userRef, { email });
+      await setDoc(userRef, { email, displayName });
     } catch (err) {
       console.log(err);
     }

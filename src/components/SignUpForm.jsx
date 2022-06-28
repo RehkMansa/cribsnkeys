@@ -61,6 +61,7 @@ const SignUpForm = ({ loginState, setLoginState }) => {
 
     if (signUp.data != null) {
       setUserData(signUp.data);
+      setLoginState(false);
     } else if (signUp.errors != null) {
       setShowErrors(true);
       setSignUpErrors(signUp.errors);

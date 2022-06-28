@@ -47,7 +47,7 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const HomePage = () => {
+const HomePage = ({userData}) => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
