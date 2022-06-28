@@ -16,6 +16,7 @@ const InputElement = ({ placeHolder, onChange, value, type }) => {
     <InputWrapper>
       <input
         type={type}
+        name={value}
         placeholder={placeHolder}
         onChange={onChange}
         value={value}

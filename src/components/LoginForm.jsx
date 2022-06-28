@@ -27,12 +27,35 @@ const FormWrapper = styled.form`
   }
 `;
 const LoginForm = ({ loginState, setLoginState }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //authenticate with google
+  };
+
   return (
     <Wrapper>
       <h2>Please Login</h2>
-      <FormWrapper>
-        <InputElement placeHolder={'Username'} />
-        <InputElement placeHolder={'Password'} />
+      <FormWrapper onSubmit={handleSubmit}>
+        <InputElement
+          placeHolder={'Email Address'}
+          type={'email'}
+          value={email}
+          onChange={(e) => {
+            setEmail(e.currentTarget.value);
+          }}
+        />
+        <InputElement
+          placeHolder={'Password'}
+          type={'password'}
+          value={password}
+          onChange={(e) => {
+            setPassword(e.currentTarget.value);
+          }}
+        />
         <button>Find A Crib</button>
         <div className="formInner">
           <p>Don't Have An Account ?</p>
