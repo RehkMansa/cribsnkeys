@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import InputElement from './InputElement';
 import { toggleStateVar } from './utils/helpers';
@@ -26,22 +25,22 @@ const FormWrapper = styled.form`
     }
   }
 `;
-const LoginForm = ({ loginState, setLoginState }) => {
+const SignUpForm = ({ loginState, setLoginState }) => {
   return (
     <Wrapper>
-      <h2>Please Login</h2>
+      <h2>Create an account</h2>
       <FormWrapper>
         <InputElement placeHolder={'Username'} />
         <InputElement placeHolder={'Password'} />
         <button>Find A Crib</button>
         <div className="formInner">
-          <p>Don't Have An Account ?</p>
+          <p>Do you have an account ?</p>
           <span
             onClick={() => {
               toggleStateVar(loginState, setLoginState);
             }}
           >
-            Register
+            Sign In
           </span>
         </div>
       </FormWrapper>
@@ -49,4 +48,4 @@ const LoginForm = ({ loginState, setLoginState }) => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

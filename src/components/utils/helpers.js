@@ -1,1 +1,2 @@
-export const toggleStateVar = (stateVar, setStateVar) =>  stateVar === true ? setStateVar(false) : setStateVar(true);
+export const toggleStateVar = (stateVar, setStateVar) =>
+  stateVar === true ? setStateVar(false) : setStateVar(true);

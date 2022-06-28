@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Cribs from './Cribs';
 import HomeSearch from './HomeSearch';
-import LoginForm from './LoginForm';
+import LoginComponent from './LoginComponent';
 import RightFloatingMenu from './RightFloatingMenu';
 
 const Wrapper = styled.section`
@@ -63,7 +63,7 @@ const HomePage = () => {
         <h3>Browse Featured Cribs</h3>
         <Cribs />
       </RightContainer>
-      {showLogin && <LoginForm />}
+      {showLogin && <LoginComponent />}
     </Wrapper>
   );
 };
