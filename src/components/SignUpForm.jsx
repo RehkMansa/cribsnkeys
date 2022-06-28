@@ -1,15 +1,26 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { emailSignUp } from './firebase/utils';
 import InputElement from './InputElement';
 import { toggleStateVar } from './utils/helpers';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  h2 {
+    margin-bottom: 40px;
+  }
+`;
 
 const FormWrapper = styled.form`
   display: flex;
   width: 500px;
   flex-direction: column;
   gap: 20px;
+
+  .alert {
+    background-color: #fff;
+    padding: 20px;
+    color: rgb(50, 50, 50);
+  }
 
   input {
     width: 100%;
@@ -30,16 +41,36 @@ const SignUpForm = ({ loginState, setLoginState }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [signUpErrors, setSignUpErrors] = useState('');
+  const [showErrors, setShowErrors] = useState(false);
+  const [userData, setUserData] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //authenticate with google
+    if (password != confirmPassword) {
+      setShowErrors(true);
+      setSignUpErrors({ message: 'Password Does not match' });
+
+      return;
+    }
+
+    const signUp = await emailSignUp(email, password);
+
+    console.log(signUp);
+
+    if (signUp.data != null) {
+      setUserData(signUp.data);
+    } else if (signUp.errors != null) {
+      setShowErrors(true);
+      setSignUpErrors(signUp.errors);
+    }
   };
   return (
     <Wrapper>
       <h2>Create an account</h2>
       <FormWrapper onSubmit={handleSubmit}>
+        {showErrors && <div className="alert">{signUpErrors.message}</div>}
         <InputElement
           placeHolder={'Email Address'}
           type={'email'}
@@ -47,6 +78,7 @@ const SignUpForm = ({ loginState, setLoginState }) => {
           onChange={(e) => {
             setEmail(e.currentTarget.value);
           }}
+          required
         />
         <InputElement
           placeHolder={'Enter Password'}
@@ -55,6 +87,7 @@ const SignUpForm = ({ loginState, setLoginState }) => {
           onChange={(e) => {
             setPassword(e.currentTarget.value);
           }}
+          required
         />
         <InputElement
           placeHolder={'Confirm Password'}
@@ -63,6 +96,7 @@ const SignUpForm = ({ loginState, setLoginState }) => {
           onChange={(e) => {
             setConfirmPassword(e.currentTarget.value);
           }}
+          required
         />
         <button>Find A Crib</button>
         <div className="formInner">
