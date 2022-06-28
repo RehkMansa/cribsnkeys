@@ -1,15 +1,26 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { emailSignUp } from './firebase/utils';
 import InputElement from './InputElement';
 import { toggleStateVar } from './utils/helpers';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  h2 {
+    margin-bottom: 40px;
+  }
+`;
 
 const FormWrapper = styled.form`
   display: flex;
   width: 500px;
   flex-direction: column;
   gap: 20px;
+
+  .alert {
+    background-color: #fff;
+    padding: 20px;
+    color: rgb(50, 50, 50);
+  }
 
   input {
     width: 100%;
@@ -29,17 +40,30 @@ const FormWrapper = styled.form`
 const LoginForm = ({ loginState, setLoginState }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signUpErrors, setSignUpErrors] = useState('');
+  const [showErrors, setShowErrors] = useState(false);
+  const [userData, setUserData] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const signUp = await emailSignUp(email, password);
 
-    //authenticate with google
+    console.log(signUp);
+
+    if (signUp.data != null) {
+      setUserData(signUp.data);
+    } else if (signUp.errors != null) {
+      setShowErrors(true);
+      setSignUpErrors(signUp.errors);
+    }
   };
 
   return (
     <Wrapper>
       <h2>Please Login</h2>
       <FormWrapper onSubmit={handleSubmit}>
+        {showErrors && <div className="alert">{signUpErrors.message}</div>}
+
         <InputElement
           placeHolder={'Email Address'}
           type={'email'}
@@ -56,7 +80,7 @@ const LoginForm = ({ loginState, setLoginState }) => {
             setPassword(e.currentTarget.value);
           }}
         />
-        <button>Find A Crib</button>
+        <button>Login</button>
         <div className="formInner">
           <p>Don't Have An Account ?</p>
           <span
