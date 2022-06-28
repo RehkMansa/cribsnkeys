@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { emailSignUp } from './firebase/utils';
+import { emailSingIn } from './firebase/utils';
 import InputElement from './InputElement';
 import { toggleStateVar } from './utils/helpers';
 
@@ -46,7 +46,7 @@ const LoginForm = ({ loginState, setLoginState }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const signUp = await emailSignUp(email, password);
+    const signUp = await emailSingIn(email, password);
 
     console.log(signUp);
 
