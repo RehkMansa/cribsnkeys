@@ -23,9 +23,26 @@ const Wrapper = styled.div`
     font-size: 40px;
     text-align: center;
   }
+
+  .closeForm {
+    position: absolute;
+    top: 15%;
+    right: 25%;
+    cursor: pointer;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--gold);
+    padding: 5px;
+    border: 1px solid var(--gold);
+  }
 `;
 
-const LoginComponent = () => {
+const LoginComponent = ({ setShowLoginState }) => {
   const [logIn, setLogIn] = useState(true);
   return (
     <Wrapper>
@@ -34,6 +51,15 @@ const LoginComponent = () => {
       ) : (
         <SignUpForm loginState={logIn} setLoginState={setLogIn} />
       )}
+
+      <div
+        className="closeForm"
+        onClick={() => {
+          setShowLoginState(false);
+        }}
+      >
+        X
+      </div>
     </Wrapper>
   );
 };

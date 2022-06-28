@@ -47,7 +47,7 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const HomePage = ({userData}) => {
+const HomePage = ({ userData }) => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -59,11 +59,15 @@ const HomePage = ({userData}) => {
         </Content>
       </LeftContainer>
       <RightContainer>
-        <RightFloatingMenu loginState={showLogin} setLogin={setShowLogin} />
+        <RightFloatingMenu
+          loginState={showLogin}
+          user={userData}
+          setLogin={setShowLogin}
+        />
         <h3>Browse Featured Cribs</h3>
         <Cribs />
       </RightContainer>
-      {showLogin && <LoginComponent />}
+      {showLogin && <LoginComponent setShowLoginState={setShowLogin} />}
     </Wrapper>
   );
 };

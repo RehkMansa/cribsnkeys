@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { FaGoogle, FaHome } from 'react-icons/fa';
+import { FaGoogle, FaHome, FaSignOutAlt } from 'react-icons/fa';
 import { RiLoginBoxFill } from 'react-icons/ri';
 import MenuItems from './MenuItems';
-import { signInWithGoogle } from './firebase/utils';
+import { auth, signInWithGoogle } from './firebase/utils';
 import { toggleStateVar } from './utils/helpers';
 
 const Wrapper = styled.div`
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   right: 20px;
 `;
 
-const RightFloatingMenu = ({ loginState, setLogin }) => {
+const RightFloatingMenu = ({ loginState, setLogin, user }) => {
   const menuItems = [
     {
       id: 0,
@@ -42,15 +42,30 @@ const RightFloatingMenu = ({ loginState, setLogin }) => {
   ];
   return (
     <Wrapper>
-      {menuItems.map((menu) => (
-        <MenuItems
-          key={menu.id}
-          icon={menu.icon}
-          link={menu.link}
-          title={menu.name}
-          onClickFunc={menu.function}
-        />
-      ))}
+      {!user ? (
+        menuItems.map((menu) => (
+          <MenuItems
+            key={menu.id}
+            icon={menu.icon}
+            link={menu.link}
+            title={menu.name}
+            onClickFunc={menu.function}
+          />
+        ))
+      ) : (
+        <>
+          <MenuItems icon={<FaHome />} title={'Home'} link="/" />
+          <div
+            onClick={() => {
+              auth.signOut();
+              
+
+            }}
+          >
+            <MenuItems icon={<FaSignOutAlt />} title={'Log Out'} link="/" />
+          </div>
+        </>
+      )}
     </Wrapper>
   );
 };

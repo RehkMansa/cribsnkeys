@@ -24,6 +24,7 @@ function App() {
         });
       } else {
         console.log('user not logged in');
+        setCurrentUser(null);
       }
     });
   }, []);
