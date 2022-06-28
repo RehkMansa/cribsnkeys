@@ -6,7 +6,9 @@ import {
   GoogleAuthProvider,
   getAuth,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { async } from '@firebase/util';
 
 const app = initializeApp(firebaseConfig);
 
@@ -55,4 +57,21 @@ export const checkUserDB = async (dbLocation, userObj) => {
   }
 
   return userRef;
+};
+
+export const emailSingIn = async (email, password) => {
+  let data = null;
+  let errors = null;
+  await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredentials) => {
+      data = userCredentials.user;
+    })
+    .catch((err) => {
+      errors = {
+        code: err.code,
+        message: err.message,
+      };
+    });
+
+  return { data, errors };
 };
