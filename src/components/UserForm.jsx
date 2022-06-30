@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ImageUploader from './ImageUploader';
 
 const FormWrapper = styled.div`
   gap: 20px;
@@ -35,6 +36,7 @@ const UserForm = () => {
         <input type="email" name="" placeholder="Street" id="" />
       </Row>
       <input type="email" name="" placeholder="Home Address" id="" />
+      <ImageUploader title={'Upload Profile Picture'} />
     </FormWrapper>
   );
 };
