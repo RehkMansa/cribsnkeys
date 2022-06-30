@@ -75,14 +75,16 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .form-flex{
-  display: flex;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-  flex-direction: column;
-  gap: 10px;
-
-  input {
-    width: 100%;
-  }
+    input, button {
+      border-radius: 10px;
+    }
+    input {
+      width: 100%;
+    }
   }
 `;
 export default GlobalStyles;

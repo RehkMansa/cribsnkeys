@@ -1,17 +1,52 @@
 import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';
 import UserForm from './UserForm';
+import styled from 'styled-components';
+import ImageUploader from './ImageUploader';
+import RightFloatingMenu from './RightFloatingMenu';
 
-const UserPage = () => {
+const FormWrapper = styled.div`
+  .uploadImage {
+    background-color: rgba(242, 182, 54, 0.99);
+    color: var(--blue);
+  }
+
+  button {
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    background-color: transparent;
+  }
+`;
+
+const UserPage = ({ userData }) => {
   return (
     <Wrapper>
       <LeftContainer
         bgImage={'smiling-agent.jpg'}
-        overlayValue={'rgba(0, 0, 50, 0.1)'}
-        content={<UserForm />}
+        overlayValue={'rgba(0, 0, 0, 0.3)'}
+        content={<UserForm width={'80%'} />}
       />
       <RightContainer>
+        <RightFloatingMenu user={userData} />
         <h3>Hello</h3>
+        <p>
+          {' '}
+          {userData.displayName === undefined
+            ? userData.email
+            : userData.displayName}
+        </p>
+        <FormWrapper className="form-flex">
+          <input type="text" placeholder="Enter A Display Name" />
+          <ImageUploader
+            className={'uploadImage'}
+            title={'Click To Upload A Profile Image'}
+          />
+          <button>Submit</button>
+        </FormWrapper>
+
+        <div className="alert">
+          <p>Complete user sign up</p>
+        </div>
       </RightContainer>
     </Wrapper>
   );

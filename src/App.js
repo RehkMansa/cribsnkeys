@@ -34,7 +34,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<HomePage userData={currentUser} />} />
-        <Route path="/user" element={<UserPage />} />
+        <Route path="/user" element={<UserPage userData={currentUser} />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Container>

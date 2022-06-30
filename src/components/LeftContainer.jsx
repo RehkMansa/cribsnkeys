@@ -21,6 +21,9 @@ const Container = styled.div`
 const Content = styled.div`
   z-index: 1;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const LeftContainer = ({ bgImage, content, overlayValue }) => {

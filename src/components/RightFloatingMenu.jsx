@@ -18,10 +18,6 @@ const Wrapper = styled.div`
 `;
 
 const RightFloatingMenu = ({ loginState, setLogin, user }) => {
-  let { displayName } = user;
-  if(displayName === undefined){
-    displayName = 'Complete Your registration'
-  }
   const menuItems = [
     {
       id: 0,
@@ -59,7 +55,15 @@ const RightFloatingMenu = ({ loginState, setLogin, user }) => {
       ) : (
         <>
           <MenuItems icon={<FaHome />} title={'Home'} link="/" />
-          <MenuItems icon={<FaUserAlt />} title={displayName} link="/user" />
+          <MenuItems
+            icon={<FaUserAlt />}
+            title={
+              user.displayName === undefined
+                ? user.email.replace('@gmail.com', '')
+                : user.displayName
+            }
+            link="/user"
+          />
           <div
             onClick={() => {
               auth.signOut();
