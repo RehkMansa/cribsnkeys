@@ -1,6 +1,7 @@
 hh {
   color: hsl(41, 88%, 78%);
   color: hsl(228, 67%, 70%);
+  color: #c8c8c8;
   background-color: rgba(6, 11, 30, 0.5);
   border: 1px solid rgba(7, 12, 31, 0.3)
 }

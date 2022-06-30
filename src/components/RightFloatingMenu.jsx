@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaGoogle, FaHome, FaSignOutAlt } from 'react-icons/fa';
+import { FaGoogle, FaHome, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
 import { RiLoginBoxFill } from 'react-icons/ri';
 import MenuItems from './MenuItems';
 import { auth, signInWithGoogle } from './firebase/utils';
@@ -18,6 +18,10 @@ const Wrapper = styled.div`
 `;
 
 const RightFloatingMenu = ({ loginState, setLogin, user }) => {
+  let { email, displayName } = user;
+  if(displayName === undefined){
+    displayName = 'Complete Your registration'
+  }
   const menuItems = [
     {
       id: 0,
@@ -55,11 +59,10 @@ const RightFloatingMenu = ({ loginState, setLogin, user }) => {
       ) : (
         <>
           <MenuItems icon={<FaHome />} title={'Home'} link="/" />
+          <MenuItems icon={<FaUserAlt />} title={displayName} link="/user" />
           <div
             onClick={() => {
               auth.signOut();
-              
-
             }}
           >
             <MenuItems icon={<FaSignOutAlt />} title={'Log Out'} link="/" />
