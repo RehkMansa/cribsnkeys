@@ -14,7 +14,7 @@ const Container = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: ${(props) => props.overlay};
   }
 `;
 
@@ -23,10 +23,10 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const LeftContainer = ({ bgImage, content }) => {
+const LeftContainer = ({ bgImage, content, overlayValue }) => {
   return (
     <Container bgImage={bgImage}>
-      <div className="overlay"></div>
+      <div className="overlay" overlay={overlayValue}></div>
       <Content>{content}</Content>
     </Container>
   );
