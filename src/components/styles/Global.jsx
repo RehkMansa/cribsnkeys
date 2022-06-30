@@ -73,5 +73,16 @@ const GlobalStyles = createGlobalStyle`
     transition: all 0.5s ease-in-out;
     cursor: pointer;
   }
+
+  .form-flex{
+  display: flex;
+
+  flex-direction: column;
+  gap: 10px;
+
+  input {
+    width: 100%;
+  }
+  }
 `;
 export default GlobalStyles;
