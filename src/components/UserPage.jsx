@@ -1,8 +1,8 @@
+import LeftContainer from './LeftContainer';
+
 const UserPage = () => {
   return (
-    <div>
-      <h3>User Page</h3>
-    </div>
+    <LeftContainer bgImage={'smiling-agent.jpg'}/>
   );
 };
 
