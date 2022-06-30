@@ -18,26 +18,17 @@ const UserForm = () => {
   return (
     <FormWrapper className="form-flex">
       <h3>Become an agent</h3>
-      <input
-        type="text"
-        required
-        placeholder="Enter Display Name"
-      />
+      <input type="text" required placeholder="Enter Display Name" />
       <input type="text" required name="" placeholder="Enter User Name" id="" />
       <input type="tel" required name="" placeholder="Phone number" id="" />
       <input type="email" name="" placeholder="Enter Email" id="" />
       <h4>Location Details</h4>
       <Row>
-        <input
-          type="text"
-          required
-          name=""
-          placeholder="Enter User Name"
-          id=""
-        />
-        <input type="tel" required name="" placeholder="Phone number" id="" />
-        <input type="email" name="" placeholder="Enter Email" id="" />
+        <input type="text" required name="" placeholder="State" id="" />
+        <input type="tel" required name="" placeholder="City" id="" />
+        <input type="email" name="" placeholder="Street" id="" />
       </Row>
+      <input type="email" name="" placeholder="Home Address" id="" />
     </FormWrapper>
   );
 };
