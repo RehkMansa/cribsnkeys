@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   display: flex;
   gap: 10px;
   color: var(--blue);
-  background-color: var(--gold);
+  background-color: ${(props) =>
+    props.color ? props.color : 'var(--gold)'};
   padding: 10px;
   border-radius: 50px;
   position: absolute;
@@ -41,7 +42,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
     },
   ];
   return (
-    <Wrapper>
+    <Wrapper color={bgColor}>
       {!user ? (
         menuItems.map((menu) => (
           <MenuItems
