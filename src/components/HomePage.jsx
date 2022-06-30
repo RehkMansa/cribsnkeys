@@ -6,13 +6,13 @@ import LeftContainer from './LeftContainer';
 import LoginComponent from './LoginComponent';
 import RightFloatingMenu from './RightFloatingMenu';
 
-const Wrapper = styled.section`
+export const Wrapper = styled.section`
   display: flex;
   & > div {
     width: 50%;
   }
 `;
-const RightContainer = styled.div`
+export const RightContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 20px 5%;
