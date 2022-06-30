@@ -10,6 +10,10 @@ const FormWrapper = styled.div`
     background-color: rgba(242, 182, 54, 0.99);
     color: var(--blue);
   }
+   
+  & > *{
+    margin: 5px 0;
+  }
 
   button {
     color: var(--gold);
@@ -28,13 +32,24 @@ const UserPage = ({ userData }) => {
       />
       <RightContainer>
         <RightFloatingMenu user={userData} />
-        <h3>Hello</h3>
-        <p>
-          {' '}
-          {userData.displayName === undefined
-            ? userData.email
-            : userData.displayName}
-        </p>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '20px',
+            marginBottom: '20px',
+            flexDirection: 'column',
+          }}
+        >
+          <h3>Hello</h3>
+          <p>
+            {' '}
+            {userData.displayName === undefined
+              ? userData.email
+              : userData.displayName}
+          </p>
+        </div>
+        <h4>Fill the form to complete user sign up</h4>
         <FormWrapper className="form-flex">
           <input type="text" placeholder="Enter A Display Name" />
           <ImageUploader
@@ -43,10 +58,6 @@ const UserPage = ({ userData }) => {
           />
           <button>Submit</button>
         </FormWrapper>
-
-        <div className="alert">
-          <p>Complete user sign up</p>
-        </div>
       </RightContainer>
     </Wrapper>
   );

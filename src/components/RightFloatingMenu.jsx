@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   right: 20px;
 `;
 
-const RightFloatingMenu = ({ loginState, setLogin, user }) => {
+const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
   const menuItems = [
     {
       id: 0,

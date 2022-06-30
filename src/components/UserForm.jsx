@@ -31,7 +31,7 @@ const Row = styled.div`
 const UserForm = ({ width }) => {
   return (
     <FormWrapper formWidth={width} className="form-flex">
-      <h3>Become an agent</h3>
+      <h3>Do you want to be an agent</h3>
       <input type="text" required placeholder="Enter Display Name" />
       <input type="text" required name="" placeholder="Enter User Name" id="" />
       <input type="tel" required name="" placeholder="Phone number" id="" />

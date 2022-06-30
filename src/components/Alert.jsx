@@ -1,7 +1,15 @@
-import sty
+import styled from 'styled-components';
 
-const Alert = ({message, position}) => {
-  return (  );
-}
- 
+const Wrapper = styled.div``;
+
+const Alert = ({ message, position }) => {
+  return (
+    <Wrapper>
+      <div className="alert">
+        <p>Complete user sign up</p>
+      </div>
+    </Wrapper>
+  );
+};
+
 export default Alert;
