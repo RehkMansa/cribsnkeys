@@ -32,7 +32,7 @@ const InputElement = ({ placeHolder, onChange, value, type, required }) => {
 
   return (
     <InputWrapper>
-      {type == 'password' ? (
+      {type === 'password' ? (
         <PasswordWrap>
           <input
             type={passwordValue}
@@ -44,13 +44,13 @@ const InputElement = ({ placeHolder, onChange, value, type, required }) => {
           />
           <div
             onClick={() => {
-              passwordValue == 'password'
+              passwordValue === 'password'
                 ? setPasswordValue('text')
                 : setPasswordValue('password');
             }}
             className="password-toggle"
           >
-            {passwordValue == 'password' ? <FaEye /> : <FaEyeSlash />}
+            {passwordValue === 'password' ? <FaEye /> : <FaEyeSlash />}
           </div>
         </PasswordWrap>
       ) : (

@@ -31,7 +31,11 @@ const HomePage = ({ userData }) => {
 
   return (
     <Wrapper>
-      <LeftContainer bgImage={'home-bg-left.jpg'} content={<HomeSearch />} />
+      <LeftContainer
+        overlayValue={'rgba(0, 0, 0, 0.45)'}
+        bgImage={'home-bg-left.jpg'}
+        content={<HomeSearch />}
+      />
       <RightContainer>
         <RightFloatingMenu
           loginState={showLogin}

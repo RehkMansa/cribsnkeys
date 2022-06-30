@@ -37,18 +37,17 @@ const FormWrapper = styled.form`
     }
   }
 `;
-const SignUpForm = ({ loginState, setLoginState }) => {
+const SignUpForm = ({ loginState, setLoginState, showLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signUpErrors, setSignUpErrors] = useState('');
   const [showErrors, setShowErrors] = useState(false);
-  const [userData, setUserData] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       setShowErrors(true);
       setSignUpErrors({ message: 'Password Does not match' });
 
@@ -60,8 +59,7 @@ const SignUpForm = ({ loginState, setLoginState }) => {
     console.log(signUp);
 
     if (signUp.data != null) {
-      setUserData(signUp.data);
-      setLoginState(false);
+      showLogin(false);
     } else if (signUp.errors != null) {
       setShowErrors(true);
       setSignUpErrors(signUp.errors);

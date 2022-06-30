@@ -37,13 +37,11 @@ const FormWrapper = styled.form`
     }
   }
 `;
-const LoginForm = ({ loginState, setLoginState }) => {
+const LoginForm = ({ loginState, setLoginState, showLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signUpErrors, setSignUpErrors] = useState('');
   const [showErrors, setShowErrors] = useState(false);
-  const [userData, setUserData] = useState('');
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const signUp = await emailSingIn(email, password);
@@ -51,7 +49,7 @@ const LoginForm = ({ loginState, setLoginState }) => {
     console.log(signUp);
 
     if (signUp.data != null) {
-      setUserData(signUp.data);
+      showLogin(false);
     } else if (signUp.errors != null) {
       setShowErrors(true);
       setSignUpErrors(signUp.errors);

@@ -25,8 +25,8 @@ const Content = styled.div`
 
 const LeftContainer = ({ bgImage, content, overlayValue }) => {
   return (
-    <Container bgImage={bgImage}>
-      <div className="overlay" overlay={overlayValue}></div>
+    <Container bgImage={bgImage} overlay={overlayValue}>
+      <div className="overlay"></div>
       <Content>{content}</Content>
     </Container>
   );

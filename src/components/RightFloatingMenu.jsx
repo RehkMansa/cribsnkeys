@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const RightFloatingMenu = ({ loginState, setLogin, user }) => {
-  let { email, displayName } = user;
+  let { displayName } = user;
   if(displayName === undefined){
     displayName = 'Complete Your registration'
   }

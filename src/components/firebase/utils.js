@@ -8,8 +8,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { async } from '@firebase/util';
-
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);

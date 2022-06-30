@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import InputElement from './InputElement';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
-import { toggleStateVar } from './utils/helpers';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -47,9 +45,17 @@ const LoginComponent = ({ setShowLoginState }) => {
   return (
     <Wrapper>
       {logIn === true ? (
-        <LoginForm loginState={logIn} setLoginState={setLogIn} />
+        <LoginForm
+          loginState={logIn}
+          showLogin={setShowLoginState}
+          setLoginState={setLogIn}
+        />
       ) : (
-        <SignUpForm loginState={logIn} setLoginState={setLogIn} />
+        <SignUpForm
+          loginState={logIn}
+          showLogin={setShowLoginState}
+          setLoginState={setLogIn}
+        />
       )}
 
       <div
