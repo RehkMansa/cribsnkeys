@@ -1,18 +1,26 @@
-import Dropzone from "react-dropzone";
+import Dropzone from 'react-dropzone';
+import styled from 'styled-components';
 
-const ImageUploader = () => {
+const Wrapper = styled.div`
+  padding: 20px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+`;
+
+const ImageUploader = ({ title }) => {
   return (
     <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
       {({ getRootProps, getInputProps }) => (
-        <section className="uploader">
+        <Wrapper>
           <div {...getRootProps()}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p>{title}</p>
           </div>
-        </section>
+        </Wrapper>
       )}
     </Dropzone>
   );
-}
- 
+};
+
 export default ImageUploader;

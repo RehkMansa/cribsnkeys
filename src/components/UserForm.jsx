@@ -1,4 +1,3 @@
-import Dropzone from 'react-dropzone';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
