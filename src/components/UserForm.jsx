@@ -1,3 +1,4 @@
+import Dropzone from 'react-dropzone';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
@@ -6,6 +7,11 @@ const FormWrapper = styled.div`
   h3 {
     text-align: center;
     font-size: 40px;
+  }
+  .uploader {
+    padding: 20px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3); 
   }
 `;
 
@@ -29,6 +35,16 @@ const UserForm = () => {
         <input type="email" name="" placeholder="Street" id="" />
       </Row>
       <input type="email" name="" placeholder="Home Address" id="" />
+      <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
+        {({ getRootProps, getInputProps }) => (
+          <section className="uploader">
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            </div>
+          </section>
+        )}
+      </Dropzone>
     </FormWrapper>
   );
 };
