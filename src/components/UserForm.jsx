@@ -11,7 +11,8 @@ const FormWrapper = styled.div`
   .uploader {
     padding: 20px;
     color: #fff;
-    background-color: rgba(255, 255, 255, 0.3); 
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
   }
 `;
 
@@ -35,16 +36,6 @@ const UserForm = () => {
         <input type="email" name="" placeholder="Street" id="" />
       </Row>
       <input type="email" name="" placeholder="Home Address" id="" />
-      <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
-        {({ getRootProps, getInputProps }) => (
-          <section className="uploader">
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
-            </div>
-          </section>
-        )}
-      </Dropzone>
     </FormWrapper>
   );
 };
