@@ -27,7 +27,7 @@ const UserPage = ({ userData }) => {
       <LeftContainer
         bgImage={'smiling-agent.jpg'}
         overlayValue={'rgba(0, 0, 0, 0.3)'}
-        content={<UserForm width={'80%'} />}
+        content={<UserForm user={userData} width={'80%'} />}
       />
       <RightContainer>
         <RightFloatingMenu user={userData} bgColor={'#070C1F'} />

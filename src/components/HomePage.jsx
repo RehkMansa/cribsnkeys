@@ -20,6 +20,11 @@ export const RightContainer = styled.div`
   position: relative;
   flex-direction: column;
   gap: 20px;
+  // background-color: #121212;
+  /* background-image: url(https://kruisekontrol.net/wp-content/uploads/2022/07/waves-min.png);
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: cover; */
 
   h3 {
     font-size: 50px;

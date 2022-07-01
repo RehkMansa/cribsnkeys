@@ -3,5 +3,26 @@ hh {
   color: hsl(228, 67%, 70%);
   color: #c8c8c8;
   background-color: rgba(6, 11, 30, 0.5);
-  border: 1px solid rgba(7, 12, 31, 0.3)
+  border: 1px solid rgba(7, 12, 31, 0.3);
+  color: #c8c8c8;
+}
+.page .entry-title {
+  text-transform: capitalize;
+}
+.elementskit-post-image-card img {
+  min-height: 300px;
+  max-height: 200px;
+  object-fit: cover;
+}
+a {
+  font-weight: 500;
+  font-family: Murecho;
+}
+.body {
+  color: #c8c8c8;
+  background-color: #121212;
+  background-image: url(https://kruisekontrol.net/wp-content/uploads/2022/07/waves-min.png);
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 75%;
 }
