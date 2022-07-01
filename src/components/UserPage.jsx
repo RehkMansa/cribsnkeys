@@ -7,18 +7,17 @@ import RightFloatingMenu from './RightFloatingMenu';
 
 const FormWrapper = styled.div`
   .uploadImage {
-    background-color: rgba(242, 182, 54, 0.99);
-    color: var(--blue);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid hsla(228, 63%, 7%, 0.8);
+    padding: 30px 30px;
   }
-   
-  & > *{
+
+  & > * {
     margin: 5px 0;
   }
 
   button {
-    color: var(--gold);
-    border: 2px solid var(--gold);
-    background-color: transparent;
+    color: var(--blue);
   }
 `;
 
@@ -31,7 +30,7 @@ const UserPage = ({ userData }) => {
         content={<UserForm width={'80%'} />}
       />
       <RightContainer>
-        <RightFloatingMenu user={userData} />
+        <RightFloatingMenu user={userData} bgColor={'#070C1F'} />
         <div
           style={{
             display: 'flex',
@@ -46,10 +45,9 @@ const UserPage = ({ userData }) => {
             {' '}
             {userData.displayName === undefined
               ? userData.email
-              : userData.displayName}
+              : userData.displayName}{' '}
           </p>
         </div>
-        <h4>Fill the form to complete user sign up</h4>
         <FormWrapper className="form-flex">
           <input type="text" placeholder="Enter A Display Name" />
           <ImageUploader

@@ -8,9 +8,8 @@ import { toggleStateVar } from './utils/helpers';
 const Wrapper = styled.div`
   display: flex;
   gap: 10px;
-  color: var(--blue);
-  background-color: ${(props) =>
-    props.color ? props.color : 'var(--gold)'};
+  color: ${(props) => (props.color ? 'var(--gold)' : 'var(--blue)')};
+  background-color: ${(props) => (props.color ? props.color : 'var(--gold)')};
   padding: 10px;
   border-radius: 50px;
   position: absolute;

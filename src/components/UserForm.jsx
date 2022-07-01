@@ -8,18 +8,13 @@ const FormWrapper = styled.div`
     text-align: center;
     font-size: 40px;
     margin-bottom: 20px;
-  }
-  .uploader {
-    padding: 20px;
-    color: #fff;
-    background-color: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
+    color: var(--gold);
   }
 
   input,
   button {
     border-radius: 10px;
-    color:#000;
+    color: #000;
   }
 `;
 
@@ -32,8 +27,12 @@ const UserForm = ({ width }) => {
   return (
     <FormWrapper formWidth={width} className="form-flex">
       <h3>Do you want to be an agent</h3>
-      <input type="text" required placeholder="Enter Display Name" />
-      <input type="text" required name="" placeholder="Enter User Name" id="" />
+      <Row>
+        <input type="text" required placeholder="First Name" />
+        <input type="text" required placeholder="Middle name" />
+        <input type="text" required placeholder="Surname" />
+      </Row>
+      <input type="text" required name="" placeholder="Enter Username" />
       <input type="tel" required name="" placeholder="Phone number" id="" />
       <input type="email" name="" placeholder="Enter Email" id="" />
       <h4>Location Details</h4>
