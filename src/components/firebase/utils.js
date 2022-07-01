@@ -17,7 +17,6 @@ import {
 
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
-import { async } from '@firebase/util';
 
 const app = initializeApp(firebaseConfig);
 
@@ -94,14 +93,12 @@ export const uploadImage = async (location, imageName, image) => {
 
   const imageUpload = await uploadBytes(imageRef, image);
 
-  console.log(typeof ref);
-
   return { ...imageUpload, dataRef };
 };
 
-export const updateDocument = async (location, uid, data) => {
+export const updateDocument = async (location, uid, dataObj) => {
   const dataRef = doc(db, location, uid);
-  const update = await updateDoc(dataRef, { data });
+  const update = await updateDoc(dataRef, { ...dataObj });
 
   return { ...update, dataRef };
 };

@@ -6,6 +6,7 @@ import ImageUploader from './ImageUploader';
 import RightFloatingMenu from './RightFloatingMenu';
 import { updateDocument, uploadImage } from './firebase/utils';
 import { useState } from 'react';
+import { FaWindowClose } from 'react-icons/fa';
 
 const FormWrapper = styled.form`
   .uploadImage {
@@ -21,11 +22,27 @@ const FormWrapper = styled.form`
   button {
     color: var(--blue);
   }
+
+  .alert {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(135, 140, 155, 0.3);
+    border-radius: 2px;
+    position: relative;
+    color: #fff;
+    svg{
+      cursor: pointer
+      position: absolute;
+    }
+  }
 `;
+
+const ProfileCard = styled.div``
 
 const UserPage = ({ userData }) => {
   const [image, setImage] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [alert, setAlert] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imageVal = await uploadImage('agents', displayName, image);
@@ -38,10 +55,11 @@ const UserPage = ({ userData }) => {
 
       const echoMe = await updateDocument('users', userData.uid, data);
 
-      console.log(echoMe);
+      setAlert('Profile updated Successfully');
     } else {
-      alert('An error occurred');
+      setAlert('An error occurred');
     }
+    setDisplayName('');
   };
   return (
     <Wrapper>
@@ -61,7 +79,10 @@ const UserPage = ({ userData }) => {
             flexDirection: 'column',
           }}
         >
-          <h3>Hello</h3>
+          <ProfileCard>
+            <h3>Hello</h3>
+            <img src="images/" alt="" />
+          </ProfileCard>
           <p>
             {' '}
             {userData.displayName === undefined
@@ -70,6 +91,11 @@ const UserPage = ({ userData }) => {
           </p>
         </div>
         <FormWrapper onSubmit={handleSubmit} className="form-flex">
+          {alert && (
+            <div className="alert">
+              {alert} <FaWindowClose />
+            </div>
+          )}
           <input
             required
             value={displayName}
