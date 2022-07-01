@@ -4,8 +4,11 @@ import UserForm from './UserForm';
 import styled from 'styled-components';
 import ImageUploader from './ImageUploader';
 import RightFloatingMenu from './RightFloatingMenu';
+import { uploadImage } from './firebase/utils';
+import { useState } from 'react';
+import { async } from '@firebase/util';
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   .uploadImage {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid hsla(228, 63%, 7%, 0.8);
@@ -22,6 +25,18 @@ const FormWrapper = styled.div`
 `;
 
 const UserPage = ({ userData }) => {
+  const [image, setImage] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(image);
+
+    // const imageVal = await uploadImage(userData.uid, image);
+
+    // console.log(imageVal);
+
+    // console.log(imageVal.location.path);
+  };
   return (
     <Wrapper>
       <LeftContainer
@@ -48,9 +63,12 @@ const UserPage = ({ userData }) => {
               : userData.displayName}{' '}
           </p>
         </div>
-        <FormWrapper className="form-flex">
+        <FormWrapper onSubmit={handleSubmit} className="form-flex">
           <input type="text" placeholder="Enter username" />
           <ImageUploader
+            onClickFunc={(acceptedFiles) => {
+              setImage(acceptedFiles[0]);
+            }}
             className={'uploadImage'}
             title={'Click To Upload Profile Image'}
           />

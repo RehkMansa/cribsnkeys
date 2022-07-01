@@ -8,11 +8,16 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 
 export const auth = getAuth();
+
+export const storage = getStorage();
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -72,4 +77,14 @@ export const emailSingIn = async (email, password) => {
     });
 
   return { data, errors };
+};
+
+export const uploadImage = async (imageName, image) => {
+  if (image === null) return;
+
+  const imageRef = ref(storage, `agents/${imageName}`);
+
+  const imageUpload = await uploadBytes(imageRef, image);
+
+  return imageUpload;
 };

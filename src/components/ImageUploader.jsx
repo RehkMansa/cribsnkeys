@@ -19,17 +19,22 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageUploader = ({ title, onClickFunc, className }) => {
+const ImageUploader = ({ title, onClickFunc, className, imageVal }) => {
   const [fileName, setFileName] = useState('');
   return (
-    <Dropzone onDrop={onClickFunc}>
+    <Dropzone
+      onDrop={(acceptedFiles) => {
+        setFileName(acceptedFiles[0].name);
+        onClickFunc(acceptedFiles);
+      }}
+    >
       {({ getRootProps, getInputProps }) => (
         <Wrapper className={className} onClick={onClickFunc}>
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <div className="text-content">
               {fileName ? (
-                <p>Filename: {fileName}</p>
+                <p>File Uploaded: {fileName}</p>
               ) : (
                 <>
                   <FaUpload />
