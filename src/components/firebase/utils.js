@@ -1,6 +1,12 @@
 import { firebaseConfig } from './config';
 import { initializeApp } from 'firebase/app';
-import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -10,6 +16,8 @@ import {
 } from 'firebase/auth';
 
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { v4 } from 'uuid';
+import { async } from '@firebase/util';
 
 const app = initializeApp(firebaseConfig);
 
@@ -79,12 +87,21 @@ export const emailSingIn = async (email, password) => {
   return { data, errors };
 };
 
-export const uploadImage = async (imageName, image) => {
+export const uploadImage = async (location, imageName, image) => {
   if (image === null) return;
-
-  const imageRef = ref(storage, `agents/${imageName}`);
+  const dataRef = (location + '/' + imageName + '-' + v4()).toString();
+  const imageRef = ref(storage, dataRef);
 
   const imageUpload = await uploadBytes(imageRef, image);
 
-  return imageUpload;
+  console.log(typeof ref);
+
+  return { ...imageUpload, dataRef };
+};
+
+export const updateDocument = async (location, uid, data) => {
+  const dataRef = doc(db, location, uid);
+  const update = await updateDoc(dataRef, { data });
+
+  return { ...update, dataRef };
 };

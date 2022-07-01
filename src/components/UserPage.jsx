@@ -4,9 +4,8 @@ import UserForm from './UserForm';
 import styled from 'styled-components';
 import ImageUploader from './ImageUploader';
 import RightFloatingMenu from './RightFloatingMenu';
-import { uploadImage } from './firebase/utils';
+import { updateDocument, uploadImage } from './firebase/utils';
 import { useState } from 'react';
-import { async } from '@firebase/util';
 
 const FormWrapper = styled.form`
   .uploadImage {
@@ -26,16 +25,23 @@ const FormWrapper = styled.form`
 
 const UserPage = ({ userData }) => {
   const [image, setImage] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const imageVal = await uploadImage('agents', displayName, image);
 
-    console.log(image);
+    if (imageVal) {
+      const data = {
+        displayName: displayName,
+        image: imageVal.ref.fullPath,
+      };
 
-    // const imageVal = await uploadImage(userData.uid, image);
+      const echoMe = await updateDocument('users', userData.uid, data);
 
-    // console.log(imageVal);
-
-    // console.log(imageVal.location.path);
+      console.log(echoMe);
+    } else {
+      alert('An error occurred');
+    }
   };
   return (
     <Wrapper>
@@ -64,7 +70,15 @@ const UserPage = ({ userData }) => {
           </p>
         </div>
         <FormWrapper onSubmit={handleSubmit} className="form-flex">
-          <input type="text" placeholder="Enter username" />
+          <input
+            required
+            value={displayName}
+            onChange={(e) => {
+              setDisplayName(e.currentTarget.value);
+            }}
+            type="text"
+            placeholder="Enter username"
+          />
           <ImageUploader
             onClickFunc={(acceptedFiles) => {
               setImage(acceptedFiles[0]);
