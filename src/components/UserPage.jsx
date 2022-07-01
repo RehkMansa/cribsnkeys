@@ -49,10 +49,10 @@ const UserPage = ({ userData }) => {
           </p>
         </div>
         <FormWrapper className="form-flex">
-          <input type="text" placeholder="Enter A Display Name" />
+          <input type="text" placeholder="Enter username" />
           <ImageUploader
             className={'uploadImage'}
-            title={'Click To Upload A Profile Image'}
+            title={'Click To Upload Profile Image'}
           />
           <button>Submit</button>
         </FormWrapper>

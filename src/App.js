@@ -18,10 +18,13 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const uid = user.uid;
         const uRef = await checkUserDB('users', user);
         onSnapshot(uRef, (snapshot) => {
-          setCurrentUser({ ...snapshot.data() });
-          console.log(snapshot.data());
+          setCurrentUser({ ...snapshot.data(), uid });
+
+          let newVal = { ...snapshot.data(), uid };
+          console.log(newVal);
         });
       } else {
         console.log('user not logged in');

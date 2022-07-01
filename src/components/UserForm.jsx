@@ -6,7 +6,7 @@ const FormWrapper = styled.div`
   width: ${(props) => props.formWidth};
   h3 {
     text-align: center;
-    font-size: 40px;
+    font-size: 38px;
     margin-bottom: 20px;
     color: var(--gold);
   }
@@ -21,12 +21,22 @@ const FormWrapper = styled.div`
 const Row = styled.div`
   display: flex;
   gap: 20px;
+  position: relative;
+
+  .labelAbsolute {
+    position: absolute;
+    right: 50px;
+    top: 13px;
+    font-family: karla;
+    font-weight: 500;
+    color: var(--grey);
+  }
 `;
 
 const UserForm = ({ width }) => {
   return (
     <FormWrapper formWidth={width} className="form-flex">
-      <h3>Do you want to be an agent</h3>
+      <h3>Do you want to be an agent ?</h3>
       <Row>
         <input type="text" required placeholder="First Name" />
         <input type="text" required placeholder="Middle name" />
@@ -34,14 +44,17 @@ const UserForm = ({ width }) => {
       </Row>
       <input type="text" required name="" placeholder="Enter Username" />
       <input type="tel" required name="" placeholder="Phone number" id="" />
-      <input type="email" name="" placeholder="Enter Email" id="" />
+      <Row>
+        <input type="date" name="" placeholder="Age" id="" />
+        <h5 className="labelAbsolute">Select Age</h5>
+      </Row>
       <h4>Location Details</h4>
       <Row>
         <input type="text" required name="" placeholder="State" id="" />
-        <input type="tel" required name="" placeholder="City" id="" />
-        <input type="email" name="" placeholder="Street" id="" />
+        <input type="text" required name="" placeholder="City" id="" />
+        <input type="text" name="" placeholder="Street" id="" />
       </Row>
-      <input type="email" name="" placeholder="Home Address" id="" />
+      <input type="text" name="" placeholder="Home Address" id="" />
       <ImageUploader title={'Click To Upload Profile Picture'} />
       <button>Submit</button>
     </FormWrapper>
