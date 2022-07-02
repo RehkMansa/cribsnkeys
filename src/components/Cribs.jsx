@@ -1,4 +1,3 @@
-// import styled from 'styled-components';
 import CreateCrib from './CreateCrib';
 import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';

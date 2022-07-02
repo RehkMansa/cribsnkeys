@@ -22,11 +22,12 @@ const Wrapper = styled.div`
     color: var(--gold);
   }
 `;
-const Error404 = () => {
+const Error404 = (props) => {
+  const { title, link, buttonText } = props;
   return (
-    <Wrapper>
-      <h3>Page Not found</h3>
-      <Link to={'/'}>Go Home</Link>
+    <Wrapper {...props}>
+      <h3>{title ? title : 'Page Not Found'}</h3>
+      <Link to={link ? link : '/'}>{buttonText ? buttonText : 'Go Home'}</Link>
     </Wrapper>
   );
 };

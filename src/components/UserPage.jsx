@@ -7,6 +7,7 @@ import RightFloatingMenu from './RightFloatingMenu';
 import { updateDocument, uploadImage } from './firebase/utils';
 import { useState } from 'react';
 import FormAlert from './FormAlert';
+import Error404 from './Error404';
 
 const FormWrapper = styled.form`
   .uploadImage {
@@ -66,51 +67,59 @@ const UserPage = ({ userData }) => {
 
   return (
     <Wrapper>
-      <LeftContainer
-        bgImage={'smiling-agent.jpg'}
-        overlayValue={'rgba(0, 0, 0, 0.3)'}
-        content={<UserForm user={userData} width={'80%'} />}
-      />
-      <RightContainer>
-        <ProfileCard>
-          <img
-            src={userData.image ? userData.image : '/images/default-user.jpg'}
-            alt={userData.displayName}
+      {userData ? (
+        <>
+          <LeftContainer
+            bgImage={'smiling-agent.jpg'}
+            overlayValue={'rgba(0, 0, 0, 0.3)'}
+            content={<UserForm user={userData} width={'80%'} />}
           />
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '20px',
-              marginBottom: '20px',
-              flexDirection: 'column',
-            }}
-          >
-            <h3>Hello</h3>
-          </div>
-        </ProfileCard>
+          <RightContainer>
+            <ProfileCard>
+              <img
+                src={
+                  userData.image ? userData.image : '/images/default-user.jpg'
+                }
+                alt={userData.displayName}
+              />
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '20px',
+                  marginBottom: '20px',
+                  flexDirection: 'column',
+                }}
+              >
+                <h3>Hello</h3>
+              </div>
+            </ProfileCard>
 
-        <FormWrapper onSubmit={handleSubmit} className="form-flex">
-          <FormAlert alertState={setAlert} alertVar={alert} />
-          <input
-            required
-            value={displayName}
-            onChange={(e) => {
-              setDisplayName(e.currentTarget.value);
-            }}
-            type="text"
-            placeholder="Enter username"
-          />
-          <ImageUploader
-            onClickFunc={(acceptedFiles) => {
-              setImage(acceptedFiles[0]);
-            }}
-            className={'uploadImage'}
-            title={'Click To Upload Profile Image'}
-          />
-          <button>Submit</button>
-        </FormWrapper>
-      </RightContainer>
+            <FormWrapper onSubmit={handleSubmit} className="form-flex">
+              <FormAlert alertState={setAlert} alertVar={alert} />
+              <input
+                required
+                value={displayName}
+                onChange={(e) => {
+                  setDisplayName(e.currentTarget.value);
+                }}
+                type="text"
+                placeholder="Enter username"
+              />
+              <ImageUploader
+                onClickFunc={(acceptedFiles) => {
+                  setImage(acceptedFiles[0]);
+                }}
+                className={'uploadImage'}
+                title={'Click To Upload Profile Image'}
+              />
+              <button>Submit</button>
+            </FormWrapper>
+          </RightContainer>
+        </>
+      ) : (
+        <Error404 title={'Please Login'} style={{ width: '100%' }} />
+      )}
     </Wrapper>
   );
 };

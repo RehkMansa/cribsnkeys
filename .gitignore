@@ -25,3 +25,4 @@ src/helpers/firebase.txt
 src/firebase/config.js
 .vscode
 src/components/firebase/config.js
+src/components/blank.jsx

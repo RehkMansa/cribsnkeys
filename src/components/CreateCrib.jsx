@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Error404 from './Error404';
 import { saveWithAutoID, uploadImage } from './firebase/utils';
 import FormAlert from './FormAlert';
 import ImageUploader from './ImageUploader';
@@ -61,7 +62,6 @@ const CreateCrib = ({ width, user }) => {
     console.log(user);
 
     const img = await uploadImage('cribs', user.displayName, image);
-
     if (img) {
       const data = {
         title: title,
@@ -69,6 +69,7 @@ const CreateCrib = ({ width, user }) => {
         desc: desc,
         location: location,
         image: img.imageURL,
+        agent: user,
       };
 
       const cribsRef = await saveWithAutoID('cribs', data);
@@ -86,73 +87,89 @@ const CreateCrib = ({ width, user }) => {
   };
 
   return (
-    <FormWrapper
-      onSubmit={handleSubmit}
-      formWidth={width}
-      className="form-flex"
-    >
-      <h3>Create New Apartment Listing ?</h3>
-      <FormAlert
-        bgColor={'rgba(7, 12, 31, 0.8)'}
-        alertState={setAlert}
-        alertVar={alert}
-      />
-      <Row>
-        <input
-          value={title}
-          onChange={(e) => {
-            setTitle(e.currentTarget.value);
-          }}
-          type="text"
-          placeholder="Title"
-          id=""
+    <>
+      {user.role === 'agent' ? (
+        <FormWrapper
+          onSubmit={handleSubmit}
+          formWidth={width}
+          className="form-flex"
+        >
+          <h3>Create New Apartment Listing ?</h3>
+          <FormAlert
+            bgColor={'rgba(7, 12, 31, 0.8)'}
+            alertState={setAlert}
+            alertVar={alert}
+          />
+          <Row>
+            <input
+              required
+              value={title}
+              onChange={(e) => {
+                setTitle(e.currentTarget.value);
+              }}
+              type="text"
+              placeholder="Title"
+              id=""
+            />
+            {!title && <h5 className="labelAbsolute">Please Enter Title</h5>}
+          </Row>
+          <Row>
+            <input
+              required
+              value={price}
+              onChange={(e) => {
+                setPrice(e.currentTarget.value);
+              }}
+              type="text"
+              placeholder="Price In NGN"
+              id=""
+            />
+            {!price && <h5 className="labelAbsolute">Enter Price Per Night</h5>}
+          </Row>
+          <Row>
+            <input
+              value={location}
+              required
+              onChange={(e) => {
+                setLocation(e.currentTarget.value);
+              }}
+              type="text"
+              placeholder="Location"
+              id=""
+            />
+            {!location && <h5 className="labelAbsolute">Enter The Location</h5>}
+          </Row>
+          <Row>
+            <textarea
+              value={desc}
+              required
+              onChange={(e) => {
+                setDesc(e.currentTarget.value);
+              }}
+              type="text"
+              placeholder="Short Description about the crib"
+              id=""
+            />
+          </Row>
+          <ImageUploader
+            value={image}
+            required
+            onClickFunc={(acceptedFiles) => {
+              setImage(acceptedFiles[0]);
+            }}
+            title={'Upload An Image Of The Room'}
+          />
+          <button>Submit</button>
+        </FormWrapper>
+      ) : (
+        <Error404
+          title={'Sign up as agent to post crib'}
+          style={{ textAlign: 'center' }}
+          buttonText={'Sign Up'}
+          link={'/user'}
         />
-        {!title && <h5 className="labelAbsolute">Please Enter Title</h5>}
-      </Row>
-      <Row>
-        <input
-          value={price}
-          onChange={(e) => {
-            setPrice(e.currentTarget.value);
-          }}
-          type="text"
-          placeholder="Price In NGN"
-          id=""
-        />
-        {!price && <h5 className="labelAbsolute">Enter Price Per Night</h5>}
-      </Row>
-      <Row>
-        <input
-          value={location}
-          onChange={(e) => {
-            setLocation(e.currentTarget.value);
-          }}
-          type="text"
-          placeholder="Location"
-          id=""
-        />
-        {!location && <h5 className="labelAbsolute">Enter The Location</h5>}
-      </Row>
-      <Row>
-        <textarea
-          value={desc}
-          onChange={(e) => {
-            setDesc(e.currentTarget.value);
-          }}
-          type="text"
-          placeholder="Short Description about the crib"
-          id=""
-        />
-      </Row>
-      <ImageUploader
-        value={image}
-        onClickFunc={(acceptedFiles) => {
-          setImage(acceptedFiles[0]);
-        }}
-        title={'Upload An Image Of The Room'}
-      />
-      <button>Submit</button>
-    </FormWrapper>
+      )}
+    </>
   );
 };
 

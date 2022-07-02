@@ -62,7 +62,7 @@ export const checkUserDB = async (dbLocation, userObj) => {
     const { email, displayName } = userObj;
 
     try {
-      await setDoc(userRef, { email, displayName });
+      await setDoc(userRef, { email, displayName, role: 'user' });
     } catch (err) {
       console.log(err);
     }
