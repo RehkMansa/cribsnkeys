@@ -4,7 +4,8 @@ import { FaWindowClose } from 'react-icons/fa';
 const Wrapper = styled.div`
   text-align: center;
   padding: 20px;
-  background-color: rgba(135, 140, 155, 0.3);
+  background-color: ${(props) =>
+    props.color ? props.color : 'rgba(135, 140, 155, 0.3)'};
   border-radius: 2px;
   position: relative;
   color: #fff;
@@ -16,11 +17,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const FormAlert = ({ alertVar, alertState }) => {
+const FormAlert = ({ alertVar, alertState, bgColor }) => {
   return (
     <>
       {alertVar && (
-        <Wrapper>
+        <Wrapper color={bgColor}>
           {alertVar}
           <div
             onClick={() => {

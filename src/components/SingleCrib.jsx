@@ -1,4 +1,4 @@
-const SingleCribs = () => {
+const SingleCrib = () => {
   return (
     <div>
       <h4>Single Crib</h4>
@@ -6,4 +6,4 @@ const SingleCribs = () => {
   );
 };
 
-export default SingleCribs;
+export default SingleCrib;

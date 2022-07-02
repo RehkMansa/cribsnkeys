@@ -48,7 +48,7 @@ const HomePage = ({ userData }) => {
           setLogin={setShowLogin}
         />
         <h3>Browse Featured Cribs</h3>
-        <Cribs />
+        <p>Show Cribs</p>
       </RightContainer>
       {showLogin && <LoginComponent setShowLoginState={setShowLogin} />}
     </Wrapper>

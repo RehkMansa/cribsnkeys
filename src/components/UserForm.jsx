@@ -94,6 +94,7 @@ const UserForm = ({ width, user }) => {
     setStreet('');
     setAddress('');
     setImage('');
+    setAlert('');
   };
 
   return (
@@ -103,7 +104,11 @@ const UserForm = ({ width, user }) => {
       className="form-flex"
     >
       <h3>Do you want to be an agent ?</h3>
-      <FormAlert alertState={setAlert} alertVar={alert} />
+      <FormAlert
+        bgColor={'rgba(7, 12, 31, 0.8)'}
+        alertState={setAlert}
+        alertVar={alert}
+      />
       <Row>
         <input
           type="text"

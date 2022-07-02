@@ -3,6 +3,7 @@ import { onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styledComponents from 'styled-components';
+import Cribs from './components/Cribs';
 import Error404 from './components/Error404';
 import { auth, checkUserDB } from './components/firebase/utils';
 import HomePage from './components/HomePage';
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage userData={currentUser} />} />
         <Route path="/user" element={<UserPage userData={currentUser} />} />
+        <Route path="/cribs/*" element={<Cribs userData={currentUser} />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Container>

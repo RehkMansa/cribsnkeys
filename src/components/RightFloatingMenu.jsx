@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { FaGoogle, FaHome, FaSignOutAlt, FaUserAlt } from 'react-icons/fa';
+import {
+  FaGoogle,
+  FaHome,
+  FaSignOutAlt,
+  FaUserAlt,
+  FaVihara,
+} from 'react-icons/fa';
 import { RiLoginBoxFill } from 'react-icons/ri';
 import MenuItems from './MenuItems';
 import { auth, signInWithGoogle } from './firebase/utils';
@@ -34,6 +40,12 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
       },
     },
     {
+      id: 3,
+      name: 'Cribs',
+      icon: <FaVihara />,
+      link: 'cribs',
+    },
+    {
       id: 2,
       name: 'Sign In',
       icon: <FaGoogle />,
@@ -55,6 +67,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
       ) : (
         <>
           <MenuItems icon={<FaHome />} title={'Home'} link="/" />
+          <MenuItems icon={<FaVihara />} title={'Cribs'} link="cribs" />
           <MenuItems
             icon={<FaUserAlt />}
             title={

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const Container = styled.div`
   background: url(/images/${(props) => props.bgImage}), rgba(7, 12, 31, 0.3);
   padding: 20px 5%;
-  background-position: center;
+  background-position: ${(props) =>
+    props.imgPosition ? props.imgPosition : 'center'};
   background-size: cover;
   position: relative;
   min-height: 100vh;
@@ -26,9 +27,9 @@ const Content = styled.div`
   justify-content: center;
 `;
 
-const LeftContainer = ({ bgImage, content, overlayValue }) => {
+const LeftContainer = ({ bgImage, content, overlayValue, position }) => {
   return (
-    <Container bgImage={bgImage} overlay={overlayValue}>
+    <Container imgPosition={position} bgImage={bgImage} overlay={overlayValue}>
       <div className="overlay"></div>
       <Content>{content}</Content>
     </Container>
