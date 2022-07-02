@@ -4,9 +4,9 @@ import UserForm from './UserForm';
 import styled from 'styled-components';
 import ImageUploader from './ImageUploader';
 import RightFloatingMenu from './RightFloatingMenu';
-import { showImage, updateDocument, uploadImage } from './firebase/utils';
-import { useEffect, useState } from 'react';
-import { FaWindowClose } from 'react-icons/fa';
+import { updateDocument, uploadImage } from './firebase/utils';
+import { useState } from 'react';
+import FormAlert from './FormAlert';
 
 const FormWrapper = styled.form`
   .uploadImage {
@@ -22,24 +22,10 @@ const FormWrapper = styled.form`
   button {
     color: var(--blue);
   }
-
-  .alert {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(135, 140, 155, 0.3);
-    border-radius: 2px;
-    position: relative;
-    color: #fff;
-    svg{
-      cursor: pointer
-      position: absolute;
-    }
-  }
 `;
 
 const ProfileCard = styled.div`
   display: flex;
-  // border: 1px solid;
   width: 350px;
   gap: 20px;
   align-items: center;
@@ -78,16 +64,6 @@ const UserPage = ({ userData }) => {
     setDisplayName('');
   };
 
-  /* useEffect(() => {
-    const userImage = async () => {
-      const imageItem = await showImage();
-
-      console.log(imageItem);
-    };
-
-    userImage();
-  }, []); */
-
   return (
     <Wrapper>
       <LeftContainer
@@ -98,7 +74,10 @@ const UserPage = ({ userData }) => {
       <RightContainer>
         <RightFloatingMenu user={userData} bgColor={'#070C1F'} />
         <ProfileCard>
-          <img src={userData.image} alt="agent" />
+          <img
+            src={userData.image ? userData.image : '/images/default-user.jpg'}
+            alt={userData.displayName}
+          />
           <div
             style={{
               display: 'flex',
@@ -113,11 +92,7 @@ const UserPage = ({ userData }) => {
         </ProfileCard>
 
         <FormWrapper onSubmit={handleSubmit} className="form-flex">
-          {alert && (
-            <div className="alert">
-              {alert} <FaWindowClose />
-            </div>
-          )}
+          <FormAlert alertState={setAlert} alertVar={alert} />
           <input
             required
             value={displayName}
