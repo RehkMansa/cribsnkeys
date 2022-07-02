@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { saveWithID, uploadImage } from './firebase/utils';
+import { saveWithAutoID, uploadImage } from './firebase/utils';
 import FormAlert from './FormAlert';
 import ImageUploader from './ImageUploader';
 
@@ -58,7 +58,31 @@ const CreateCrib = ({ width, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted');
+    console.log(user);
+
+    const img = await uploadImage('cribs', user.displayName, image);
+
+    if (img) {
+      const data = {
+        title: title,
+        price: price,
+        desc: desc,
+        location: location,
+        image: img.imageURL,
+      };
+
+      const cribsRef = await saveWithAutoID('cribs', data);
+
+      setAlert(`Your Crib ID: ${cribsRef}`);
+    } else {
+      setAlert('An error occurred');
+    }
+
+    setTitle('');
+    setPrice('');
+    setDesc('');
+    setLocation('');
+    setImage('');
   };
 
   return (

@@ -1,6 +1,8 @@
 import { firebaseConfig } from './config';
 import { initializeApp } from 'firebase/app';
 import {
+  addDoc,
+  collection,
   doc,
   getDoc,
   getFirestore,
@@ -79,6 +81,19 @@ export const saveWithID = async (dbLocation, uid, data) => {
 
   await setDoc(dataRef, postData);
 };
+
+export const saveWithAutoID = async (dbLocation, data) => {
+  const dataRef = collection(db, dbLocation);
+
+  const postData = serializeData(data);
+
+  const docRef = await addDoc(dataRef, postData);
+
+  return docRef.id;
+};
+
+const serializeData = (data) =>
+  typeof data === 'object' && data != null ? { ...data } : data;
 
 export const emailSingIn = async (email, password) => {
   let data = null;
