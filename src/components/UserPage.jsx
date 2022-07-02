@@ -72,7 +72,6 @@ const UserPage = ({ userData }) => {
         content={<UserForm user={userData} width={'80%'} />}
       />
       <RightContainer>
-        <RightFloatingMenu user={userData} bgColor={'#070C1F'} />
         <ProfileCard>
           <img
             src={userData.image ? userData.image : '/images/default-user.jpg'}

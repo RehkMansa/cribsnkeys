@@ -7,14 +7,16 @@ import Cribs from './components/Cribs';
 import Error404 from './components/Error404';
 import { auth, checkUserDB } from './components/firebase/utils';
 import HomePage from './components/HomePage';
+import RightFloatingMenu from './components/RightFloatingMenu';
 import GlobalStyles from './components/styles/Global';
 import UserPage from './components/UserPage';
 const Container = styledComponents.main`
-  
+  position: relative;
 `;
 
 function App() {
   const [currentUser, setCurrentUser] = useState('');
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -37,14 +39,27 @@ function App() {
     <Container className="App">
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<HomePage userData={currentUser} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              userData={currentUser}
+              setShowLogin={setLogin}
+              showLogin={login}
+            />
+          }
+        />
         <Route path="/user" element={<UserPage userData={currentUser} />} />
         <Route path="/cribs/*" element={<Cribs userData={currentUser} />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <RightFloatingMenu
+        loginState={login}
+        user={currentUser}
+        setLogin={setLogin}
+      />
     </Container>
   );
 }
 
 export default App;
-

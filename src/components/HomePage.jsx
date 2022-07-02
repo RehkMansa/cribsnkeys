@@ -31,9 +31,7 @@ export const RightContainer = styled.div`
   }
 `;
 
-const HomePage = ({ userData }) => {
-  const [showLogin, setShowLogin] = useState(false);
-
+const HomePage = ({ userData, showLogin, setShowLogin }) => {
   return (
     <Wrapper>
       <LeftContainer
@@ -42,11 +40,6 @@ const HomePage = ({ userData }) => {
         content={<HomeSearch />}
       />
       <RightContainer>
-        <RightFloatingMenu
-          loginState={showLogin}
-          user={userData}
-          setLogin={setShowLogin}
-        />
         <h3>Browse Featured Cribs</h3>
         <p>Show Cribs</p>
       </RightContainer>

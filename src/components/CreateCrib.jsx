@@ -28,11 +28,14 @@ const Row = styled.div`
 
   .labelAbsolute {
     position: absolute;
-    right: 50px;
-    top: 13px;
+    right: 10px;
+    top: 7px;
     font-family: karla;
     font-weight: 500;
-    color: var(--grey);
+    color: rgba(70, 70, 70, 0.89);
+    background-color: rgba(70, 70, 70, 0.13);
+    padding: 5px 10px;
+    border-radius: 20px;
   }
 `;
 
@@ -103,7 +106,7 @@ const CreateCrib = ({ width, user }) => {
       formWidth={width}
       className="form-flex"
     >
-      <h3>Do you want to be an agent ?</h3>
+      <h3>Create New Apartment Listing ?</h3>
       <FormAlert
         bgColor={'rgba(7, 12, 31, 0.8)'}
         alertState={setAlert}
@@ -111,112 +114,17 @@ const CreateCrib = ({ width, user }) => {
       />
       <Row>
         <input
-          type="text"
-          value={firstName}
-          onChange={(e) => {
-            setFirstName(e.currentTarget.value);
-          }}
-          required
-          placeholder="First Name"
-        />
-        <input
-          type="text"
-          value={middleName}
-          onChange={(e) => {
-            setMiddleName(e.currentTarget.value);
-          }}
-          required
-          placeholder="Middle name"
-        />
-        <input
-          value={surname}
-          onChange={(e) => {
-            setSurname(e.currentTarget.value);
-          }}
-          type="text"
-          required
-          placeholder="Surname"
-        />
-      </Row>
-      <input
-        value={username}
-        onChange={(e) => {
-          setUsername(e.currentTarget.value);
-        }}
-        type="text"
-        required
-        name=""
-        placeholder="Enter Username"
-      />
-      <input
-        value={phone}
-        onChange={(e) => {
-          setPhone(e.currentTarget.value);
-        }}
-        type="tel"
-        required
-        name=""
-        placeholder="Phone number"
-        id=""
-      />
-      <Row>
-        <input
           value={dob}
           onChange={(e) => {
             setDob(e.currentTarget.value);
           }}
-          type="date"
+          type="text"
           name=""
           placeholder="Age"
           id=""
         />
         <h5 className="labelAbsolute">Select Age</h5>
       </Row>
-      <h4>Location Details</h4>
-      <Row>
-        <input
-          value={state}
-          onChange={(e) => {
-            setState(e.currentTarget.value);
-          }}
-          type="text"
-          required
-          name=""
-          placeholder="State"
-          id=""
-        />
-        <input
-          value={city}
-          onChange={(e) => {
-            setCity(e.currentTarget.value);
-          }}
-          type="text"
-          required
-          name=""
-          placeholder="City"
-          id=""
-        />
-        <input
-          value={street}
-          onChange={(e) => {
-            setStreet(e.currentTarget.value);
-          }}
-          type="text"
-          name=""
-          placeholder="Street"
-          id=""
-        />
-      </Row>
-      <input
-        value={address}
-        onChange={(e) => {
-          setAddress(e.currentTarget.value);
-        }}
-        type="text"
-        name=""
-        placeholder="Home Address"
-        id=""
-      />
       <ImageUploader
         value={image}
         onClickFunc={(acceptedFiles) => {

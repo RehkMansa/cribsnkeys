@@ -43,7 +43,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
       id: 3,
       name: 'Cribs',
       icon: <FaVihara />,
-      link: 'cribs',
+      link: '/cribs',
     },
     {
       id: 2,
@@ -67,7 +67,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
       ) : (
         <>
           <MenuItems icon={<FaHome />} title={'Home'} link="/" />
-          <MenuItems icon={<FaVihara />} title={'Cribs'} link="cribs" />
+          <MenuItems icon={<FaVihara />} title={'Cribs'} link="/cribs" />
           <MenuItems
             icon={<FaUserAlt />}
             title={

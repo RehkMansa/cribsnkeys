@@ -28,7 +28,7 @@ const Row = styled.div`
 
   .labelAbsolute {
     position: absolute;
-    right: 50px;
+    right: 20px;
     top: 13px;
     font-family: karla;
     font-weight: 500;
@@ -170,7 +170,7 @@ const UserForm = ({ width, user }) => {
           placeholder="Age"
           id=""
         />
-        <h5 className="labelAbsolute">Select Age</h5>
+        {!dob && <h5 className="labelAbsolute">Select Age</h5>}
       </Row>
       <h4>Location Details</h4>
       <Row>
