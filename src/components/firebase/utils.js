@@ -69,6 +69,17 @@ export const checkUserDB = async (dbLocation, userObj) => {
   return userRef;
 };
 
+export const saveWithID = async (dbLocation, uid, data) => {
+  const dataRef = doc(db, dbLocation, uid);
+
+  let postData;
+  typeof data === 'object' && data != null
+    ? (postData = { ...data })
+    : (postData = data);
+
+  await setDoc(dataRef, postData);
+};
+
 export const emailSingIn = async (email, password) => {
   let data = null;
   let errors = null;
@@ -105,8 +116,4 @@ export const updateDocument = async (location, uid, dataObj) => {
   const update = await updateDoc(dataRef, { ...dataObj });
 
   return { ...update, dataRef };
-};
-
-export const showImage = async (imageRef) => {
-  const imageData = ref(storage, imageRef);
 };

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 const Wrapper = styled.div`
-  padding: 40px 20px;
   background-color: rgba(7, 12, 31, 0.8);
   border-radius: 10px;
   cursor: pointer;
@@ -14,6 +13,7 @@ const Wrapper = styled.div`
   .text-content {
     outline: none;
     display: flex;
+    padding: 40px 20px;
     gap: 20px;
     justify-content: space-evenly;
   }

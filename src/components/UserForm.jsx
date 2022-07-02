@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { saveWithID, uploadImage } from './firebase/utils';
+import FormAlert from './FormAlert';
 import ImageUploader from './ImageUploader';
 
 const FormWrapper = styled.form`
@@ -46,33 +48,52 @@ const UserForm = ({ width, user }) => {
   const [street, setStreet] = useState('');
   const [address, setAddress] = useState('');
   const [image, setImage] = useState('');
+  const [alert, setAlert] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submitted')
-    const data = {
-      name: {
-        firstName: firstName,
-        middleName: middleName,
-        surname: surname,
-      },
-      contact: {
-        phoneNumber: phone,
-        email: user.email,
-      },
-      location: {
-        state: state,
-        city: city,
-        street: street,
-        address: address,
-      },
-      user: {
-        image: image,
-        uid: user.uid,
-      },
-    };
 
-    console.log(data);
+    const imageVal = await uploadImage('profile-images', username, image);
+
+    if (imageVal) {
+      const data = {
+        name: {
+          firstName: firstName,
+          middleName: middleName,
+          surname: surname,
+        },
+        contact: {
+          phoneNumber: phone,
+          email: user.email,
+        },
+        location: {
+          state: state,
+          city: city,
+          street: street,
+          address: address,
+        },
+        user: {
+          image: imageVal.imageURL,
+          uid: user.uid,
+        },
+      };
+      await saveWithID('agents', user.uid, data);
+
+      setAlert('Congratulations on your Sign up');
+    } else {
+      setAlert('An error occurred, please try again');
+    }
+    setFirstName('');
+    setMiddleName('');
+    setSurname('');
+    setUsername('');
+    setPhone('');
+    setDob('');
+    setState('');
+    setCity('');
+    setStreet('');
+    setAddress('');
+    setImage('');
   };
 
   return (
@@ -82,6 +103,7 @@ const UserForm = ({ width, user }) => {
       className="form-flex"
     >
       <h3>Do you want to be an agent ?</h3>
+      <FormAlert alertState={setAlert} alertVar={alert} />
       <Row>
         <input
           type="text"

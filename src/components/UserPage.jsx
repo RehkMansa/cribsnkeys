@@ -12,7 +12,6 @@ const FormWrapper = styled.form`
   .uploadImage {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid hsla(228, 63%, 7%, 0.8);
-    padding: 30px 30px;
   }
 
   & > * {
@@ -26,7 +25,7 @@ const FormWrapper = styled.form`
 
 const ProfileCard = styled.div`
   display: flex;
-  width: 350px;
+  // width: 350px;
   gap: 20px;
   align-items: center;
 
@@ -34,6 +33,7 @@ const ProfileCard = styled.div`
     width: 100px;
     height: 100px;
     object-fit: cover;
+    // border: 1px solid;
 
     border-radius: 50%;
   }
@@ -45,7 +45,7 @@ const UserPage = ({ userData }) => {
   const [alert, setAlert] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const imageVal = await uploadImage('agents', displayName, image);
+    const imageVal = await uploadImage('profile-images', displayName, image);
 
     console.log(imageVal);
 
