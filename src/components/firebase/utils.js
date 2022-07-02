@@ -15,7 +15,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 
 const app = initializeApp(firebaseConfig);
@@ -93,7 +93,11 @@ export const uploadImage = async (location, imageName, image) => {
 
   const imageUpload = await uploadBytes(imageRef, image);
 
-  return { ...imageUpload, dataRef };
+  const imageURL = await getDownloadURL(imageRef);
+
+  const filePath = imageUpload.metadata.fullPath;
+
+  return { imageURL, filePath, dataRef };
 };
 
 export const updateDocument = async (location, uid, dataObj) => {
@@ -101,4 +105,8 @@ export const updateDocument = async (location, uid, dataObj) => {
   const update = await updateDoc(dataRef, { ...dataObj });
 
   return { ...update, dataRef };
+};
+
+export const showImage = async (imageRef) => {
+  const imageData = ref(storage, imageRef);
 };

@@ -4,8 +4,8 @@ import UserForm from './UserForm';
 import styled from 'styled-components';
 import ImageUploader from './ImageUploader';
 import RightFloatingMenu from './RightFloatingMenu';
-import { updateDocument, uploadImage } from './firebase/utils';
-import { useState } from 'react';
+import { showImage, updateDocument, uploadImage } from './firebase/utils';
+import { useEffect, useState } from 'react';
 import { FaWindowClose } from 'react-icons/fa';
 
 const FormWrapper = styled.form`
@@ -37,7 +37,21 @@ const FormWrapper = styled.form`
   }
 `;
 
-const ProfileCard = styled.div``
+const ProfileCard = styled.div`
+  display: flex;
+  // border: 1px solid;
+  width: 350px;
+  gap: 20px;
+  align-items: center;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+    border-radius: 50%;
+  }
+`;
 
 const UserPage = ({ userData }) => {
   const [image, setImage] = useState('');
@@ -47,10 +61,12 @@ const UserPage = ({ userData }) => {
     e.preventDefault();
     const imageVal = await uploadImage('agents', displayName, image);
 
+    console.log(imageVal);
+
     if (imageVal) {
       const data = {
         displayName: displayName,
-        image: imageVal.ref.fullPath,
+        image: imageVal.imageURL,
       };
 
       const echoMe = await updateDocument('users', userData.uid, data);
@@ -61,6 +77,17 @@ const UserPage = ({ userData }) => {
     }
     setDisplayName('');
   };
+
+  /* useEffect(() => {
+    const userImage = async () => {
+      const imageItem = await showImage();
+
+      console.log(imageItem);
+    };
+
+    userImage();
+  }, []); */
+
   return (
     <Wrapper>
       <LeftContainer
@@ -70,26 +97,21 @@ const UserPage = ({ userData }) => {
       />
       <RightContainer>
         <RightFloatingMenu user={userData} bgColor={'#070C1F'} />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-            marginBottom: '20px',
-            flexDirection: 'column',
-          }}
-        >
-          <ProfileCard>
+        <ProfileCard>
+          <img src={userData.image} alt="agent" />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
+              marginBottom: '20px',
+              flexDirection: 'column',
+            }}
+          >
             <h3>Hello</h3>
-            <img src="images/" alt="" />
-          </ProfileCard>
-          <p>
-            {' '}
-            {userData.displayName === undefined
-              ? userData.email
-              : userData.displayName}{' '}
-          </p>
-        </div>
+          </div>
+        </ProfileCard>
+
         <FormWrapper onSubmit={handleSubmit} className="form-flex">
           {alert && (
             <div className="alert">
