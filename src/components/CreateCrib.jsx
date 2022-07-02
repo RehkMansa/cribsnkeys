@@ -17,6 +17,7 @@ const FormWrapper = styled.form`
   input,
   button {
     border-radius: 10px;
+    padding: 15px;
     color: #000;
   }
 `;
@@ -25,11 +26,10 @@ const Row = styled.div`
   display: flex;
   gap: 20px;
   position: relative;
-
   .labelAbsolute {
     position: absolute;
-    right: 10px;
-    top: 7px;
+    right: 15px;
+    top: 27%;
     font-family: karla;
     font-weight: 500;
     color: rgba(70, 70, 70, 0.89);
@@ -37,67 +37,28 @@ const Row = styled.div`
     padding: 5px 10px;
     border-radius: 20px;
   }
+
+  textarea {
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    min-height: 100px;
+    border-radius: 10px;
+    border: none;
+  }
 `;
 
 const CreateCrib = ({ width, user }) => {
-  const [firstName, setFirstName] = useState('');
-  const [middleName, setMiddleName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [username, setUsername] = useState('');
-  const [phone, setPhone] = useState('');
-  const [dob, setDob] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
-  const [street, setStreet] = useState('');
-  const [address, setAddress] = useState('');
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [desc, setDesc] = useState('');
+  const [location, setLocation] = useState('');
   const [image, setImage] = useState('');
   const [alert, setAlert] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const imageVal = await uploadImage('profile-images', username, image);
-
-    if (imageVal) {
-      const data = {
-        name: {
-          firstName: firstName,
-          middleName: middleName,
-          surname: surname,
-        },
-        contact: {
-          phoneNumber: phone,
-          email: user.email,
-        },
-        location: {
-          state: state,
-          city: city,
-          street: street,
-          address: address,
-        },
-        user: {
-          image: imageVal.imageURL,
-          uid: user.uid,
-        },
-      };
-      await saveWithID('agents', user.uid, data);
-
-      setAlert('Congratulations on your Sign up');
-    } else {
-      setAlert('An error occurred, please try again');
-    }
-    setFirstName('');
-    setMiddleName('');
-    setSurname('');
-    setUsername('');
-    setPhone('');
-    setDob('');
-    setState('');
-    setCity('');
-    setStreet('');
-    setAddress('');
-    setImage('');
-    setAlert('');
+    console.log('Form submitted');
   };
 
   return (
@@ -114,23 +75,57 @@ const CreateCrib = ({ width, user }) => {
       />
       <Row>
         <input
-          value={dob}
+          value={title}
           onChange={(e) => {
-            setDob(e.currentTarget.value);
+            setTitle(e.currentTarget.value);
           }}
           type="text"
-          name=""
-          placeholder="Age"
+          placeholder="Title"
           id=""
         />
-        <h5 className="labelAbsolute">Select Age</h5>
+        {!title && <h5 className="labelAbsolute">Please Enter Title</h5>}
+      </Row>
+      <Row>
+        <input
+          value={price}
+          onChange={(e) => {
+            setPrice(e.currentTarget.value);
+          }}
+          type="text"
+          placeholder="Price In NGN"
+          id=""
+        />
+        {!price && <h5 className="labelAbsolute">Enter Price Per Night</h5>}
+      </Row>
+      <Row>
+        <input
+          value={location}
+          onChange={(e) => {
+            setLocation(e.currentTarget.value);
+          }}
+          type="text"
+          placeholder="Location"
+          id=""
+        />
+        {!location && <h5 className="labelAbsolute">Enter The Location</h5>}
+      </Row>
+      <Row>
+        <textarea
+          value={desc}
+          onChange={(e) => {
+            setDesc(e.currentTarget.value);
+          }}
+          type="text"
+          placeholder="Short Description about the crib"
+          id=""
+        />
       </Row>
       <ImageUploader
         value={image}
         onClickFunc={(acceptedFiles) => {
           setImage(acceptedFiles[0]);
         }}
-        title={'Click To Upload Profile Picture'}
+        title={'Upload An Image Of The Room'}
       />
       <button>Submit</button>
     </FormWrapper>
