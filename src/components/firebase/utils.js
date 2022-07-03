@@ -5,6 +5,7 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
   setDoc,
   updateDoc,
@@ -131,4 +132,15 @@ export const updateDocument = async (location, uid, dataObj) => {
   const update = await updateDoc(dataRef, { ...dataObj });
 
   return { ...update, dataRef };
+};
+export const fetchAll = async (dbLocation) => {
+  const colRef = collection(db, dbLocation);
+  let dataResponse = [];
+  await getDocs(colRef).then((snapshot) => {
+    snapshot.docs.map((snap) => {
+      dataResponse.push({ ...snap.data(), id: snap.id });
+    });
+  });
+
+  return dataResponse;
 };

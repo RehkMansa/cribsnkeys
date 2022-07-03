@@ -50,7 +50,7 @@ const ListingDetails = styled.div`
   gap: 20px;
   align-items: start;
 
-  .content{
+  .content {
     line-height: 20px;
   }
 `;
@@ -70,42 +70,42 @@ const Header = styled.div`
   }
 `;
 const SingleCrib = (props) => {
-  // const { title, imgURL, agent, location } = props;
+  const { title, imgURL, agent, location, price, desc } = props;
+  const randomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
   return (
     <Wrapper>
       <Header>
         <div className="details">
-          <h3>Houston Villa, 3 Bedroom Flat</h3>
+          <h3>{title}</h3>
           <div className="details-inner">
             <div className="icon-holder">
               <FaMapMarkerAlt />
-              <p>Gbagada, Lagos</p>
+              <p>{location}</p>
             </div>
             <div className="icon-holder">
               <FaStar />
-              <p>Reviews</p>
+              <p>{randomInt(2, 5)}</p>
             </div>
           </div>
         </div>
-        <button>price</button>
+        <button>N{price}</button>
       </Header>
       <ListingDetails>
-        <img src="/images/single-home.webp" alt="home" />
+        <img src={imgURL} alt="home" />
         <div className="content">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-            nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+          <p>{desc}.</p>
         </div>
       </ListingDetails>
       <AgentCard>
         <img src="/images/default-user.jpg" alt="user" />
-        <div className="details-inner column">
+        <div className={agent.image}>
           <div className="icon-holder">
-            <p>displayName</p>
+            <p>{agent.displayName}</p>
             <MdVerified />
           </div>
-          <p>Lorem, ipsum dolor sit</p>
+          <p>{agent.uid}</p>
         </div>
       </AgentCard>
     </Wrapper>

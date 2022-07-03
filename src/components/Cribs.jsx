@@ -2,10 +2,24 @@ import { Route, Routes } from 'react-router-dom';
 import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';
 import CreateCrib from './CreateCrib';
-// import CribDefault from './CribDefault';
 import SingleCrib from './SingleCrib';
+import { useEffect, useState } from 'react';
+import { fetchAll } from './firebase/utils';
 
 const Cribs = ({ userData }) => {
+  const [cribsArray, setCribsArray] = useState([]);
+  const [showLoader, setShowLoader] = useState(false);
+  useEffect(() => {
+    setShowLoader(true);
+    fetchAll('cribs').then((res) => {
+      setCribsArray(res);
+
+      setShowLoader(false);
+
+      console.log(res);
+    });
+  }, []);
+
   return (
     <Wrapper>
       <Routes>
@@ -20,7 +34,7 @@ const Cribs = ({ userData }) => {
                 content={<CreateCrib user={userData} />}
               />
               <RightContainer>
-                <h3>Show Listings</h3>
+                {showLoader ? <h3>Loading ...</h3> : <SingleCrib />}
               </RightContainer>
             </>
           }
