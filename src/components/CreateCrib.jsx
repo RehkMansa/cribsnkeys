@@ -15,14 +15,46 @@ const FormWrapper = styled.form`
     color: var(--gold);
   }
 
+  .image-uploader {
+    .text-content {
+      padding: 20px;
+    }
+  }
   input,
   button {
     border-radius: 10px;
     padding: 15px;
     color: #000;
   }
-`;
 
+  .column {
+    flex-direction: column;
+  }
+`;
+const AmenitiesForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  .row-modified {
+    display: flex;
+    width: 100%;
+    & > button {
+      width: 40%;
+    }
+  }
+
+  .labelAbsolute {
+    font-family: karla;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(70, 70, 70, 0.89);
+    background-color: #e7e7e7;
+    padding: 5px 10px;
+    border-radius: 20px;
+    width: auto;
+  }
+`;
 const Row = styled.div`
   display: flex;
   gap: 20px;
@@ -43,7 +75,7 @@ const Row = styled.div`
     width: 100%;
     padding: 15px;
     outline: none;
-    min-height: 100px;
+    min-height: 70px;
     border-radius: 10px;
     border: none;
   }
@@ -55,7 +87,21 @@ const CreateCrib = ({ width, user }) => {
   const [desc, setDesc] = useState('');
   const [location, setLocation] = useState('');
   const [image, setImage] = useState('');
+  const [amenities, setAmenities] = useState('');
   const [alert, setAlert] = useState('');
+  const [amenitiesArr, setAmenitiesArr] = useState([]);
+
+  const convertStringToArr = (string, setArr) => {
+    const newArr = string.split(', ');
+    setArr(newArr);
+    console.log(newArr);
+  };
+
+  const addAmenity = (e) => {
+    e.preventDefault();
+
+    console.log(amenities);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -139,6 +185,31 @@ const CreateCrib = ({ width, user }) => {
             />
             {!location && <h5 className="labelAbsolute">Enter The Location</h5>}
           </Row>
+          <AmenitiesForm onSubmit={addAmenity}>
+            {!amenities && (
+              <span className="labelAbsolute">
+                You can add all amenities with a comma, or add them individually
+              </span>
+            )}
+            {amenitiesArr.length >= 1 &&
+              amenitiesArr.map((amenity, n) => (
+                <span className="labelAbsolute">{amenity}</span>
+              ))}
+            <Row className="row-modified">
+              <input
+                value={amenities}
+                required
+                onChange={(e) => {
+                  setAmenities(e.currentTarget.value);
+                }}
+                type="text"
+                placeholder="Amenities"
+                id=""
+              />
+
+              <button role='submit'>Add Amenity</button>
+            </Row>
+          </AmenitiesForm>
           <Row>
             <textarea
               value={desc}
@@ -152,6 +223,7 @@ const CreateCrib = ({ width, user }) => {
             />
           </Row>
           <ImageUploader
+            className={'image-uploader'}
             value={image}
             required
             onClickFunc={(acceptedFiles) => {

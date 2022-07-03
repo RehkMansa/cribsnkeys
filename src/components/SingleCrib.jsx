@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   margin-top: 40px;
   max-height: 600px;
   overflow: auto;
+  width: 100%;
   svg {
     color: var(--gold);
   }
@@ -95,12 +96,12 @@ const SingleCrib = (props) => {
       <ListingDetails>
         <img src={imgURL} alt="home" />
         <div className="content">
-          <p>{desc}.</p>
+          <p>{desc}</p>
         </div>
       </ListingDetails>
       <AgentCard>
-        <img src="/images/default-user.jpg" alt="user" />
-        <div className={agent.image}>
+        <img src={agent.image} alt={agent.displayName} />
+        <div className="details-inner column">
           <div className="icon-holder">
             <p>{agent.displayName}</p>
             <MdVerified />

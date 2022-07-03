@@ -13,7 +13,6 @@ const Cribs = ({ userData }) => {
     setShowLoader(true);
     fetchAll('cribs').then((res) => {
       setCribsArray(res);
-
       setShowLoader(false);
 
       console.log(res);
@@ -34,7 +33,21 @@ const Cribs = ({ userData }) => {
                 content={<CreateCrib user={userData} />}
               />
               <RightContainer>
-                {showLoader ? <h3>Loading ...</h3> : <SingleCrib />}
+                {showLoader && cribsArray.length <= 0 ? (
+                  <h3>Loading ...</h3>
+                ) : (
+                  cribsArray.map((cribs, n) => (
+                    <SingleCrib
+                      key={n}
+                      title={cribs.title}
+                      imgURL={cribs.image}
+                      agent={cribs.agent}
+                      location={cribs.location}
+                      price={cribs.price}
+                      desc={cribs.desc}
+                    />
+                  ))
+                )}
               </RightContainer>
             </>
           }

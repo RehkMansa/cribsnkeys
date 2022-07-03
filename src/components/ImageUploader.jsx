@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageUploader = ({ title, onClickFunc, className, imageVal }) => {
+const ImageUploader = ({ title, onClickFunc, className }) => {
   const [fileName, setFileName] = useState('');
   return (
     <Dropzone
