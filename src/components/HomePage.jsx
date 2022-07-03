@@ -7,6 +7,7 @@ import LoginComponent from './LoginComponent';
 import RightFloatingMenu from './RightFloatingMenu';
 
 export const Wrapper = styled.section`
+  overflow: hidden;
   display: flex;
   & > div {
     width: 50%;
@@ -19,6 +20,7 @@ export const RightContainer = styled.div`
   justify-content: center;
   position: relative;
   flex-direction: column;
+  overflow: hidden;
   gap: 20px;
   // background-color: #121212;
   /* background-image: url(https://kruisekontrol.net/wp-content/uploads/2022/07/waves-min.png);

@@ -8,6 +8,7 @@ const Container = styled.div`
   background-size: cover;
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -11,6 +11,7 @@ import RightFloatingMenu from './components/RightFloatingMenu';
 import GlobalStyles from './components/styles/Global';
 import UserPage from './components/UserPage';
 const Container = styledComponents.main`
+  overflow: hidden;
   position: relative;
 `;
 
