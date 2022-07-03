@@ -120,7 +120,7 @@ const CreateCrib = ({ width, user }) => {
         price: price,
         desc: desc,
         location: location,
-        image: 'img.imageURL',
+        image: img.url,
         agent: user,
         amenities: amenitiesArr,
       };
