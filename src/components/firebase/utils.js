@@ -137,8 +137,10 @@ export const fetchAll = async (dbLocation) => {
   const colRef = collection(db, dbLocation);
   let dataResponse = [];
   await getDocs(colRef).then((snapshot) => {
-    snapshot.docs.map((snap) => {
+    snapshot.docs.map((snap, n) => {
       dataResponse.push({ ...snap.data(), id: snap.id });
+
+      return n;
     });
   });
 

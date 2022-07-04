@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import NumberFormat from 'react-number-format';
 import styled from 'styled-components';
 import Error404 from './Error404';
 import { saveWithAutoID, uploadImage } from './firebase/utils';
@@ -7,6 +8,14 @@ import ImageUploader from './ImageUploader';
 import LoadGif from './LoadGif';
 
 const FormWrapper = styled.form`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
   gap: 20px;
   width: ${(props) => props.formWidth};
   h3 {
@@ -97,37 +106,35 @@ const CreateCrib = ({ width, user }) => {
   const [amenities, setAmenities] = useState('');
   const [alert, setAlert] = useState('');
   const [amenitiesArr, setAmenitiesArr] = useState([]);
-  const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
 
   const convertStringToArr = (string, setArr) => {
     const newArr = string.split(', ');
     setArr(newArr);
   };
 
-  /*  const addAmenity = (e) => {
-    e.preventDefault();
-
-    console.log(amenities);
-  }; */
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setShowLoader(true);
     const img = await uploadImage('cribs', user.displayName, image);
+    console.log(img);
     if (img) {
       const data = {
         title: title,
         price: price,
         desc: desc,
         location: location,
-        image: img.url,
+        image: img.imageURL,
         agent: user,
         amenities: amenitiesArr,
       };
 
+      console.log(data);
+
       const cribsRef = await saveWithAutoID('cribs', data);
 
       setAlert(`Your Crib ID: ${cribsRef}`);
+      setShowLoader(false);
     } else {
       setAlert('An error occurred');
     }
@@ -139,12 +146,15 @@ const CreateCrib = ({ width, user }) => {
     setImage('');
     setAmenities('');
     setAmenitiesArr([]);
+    setShowLoader(false);
+
+    console.log('submitted');
   };
 
   return (
     <>
       {user.role === 'agent' ? (
-        showLoader === true ? (
+        showLoader !== false ? (
           <LoadGif />
         ) : (
           <FormWrapper
@@ -172,15 +182,14 @@ const CreateCrib = ({ width, user }) => {
               {!title && <h5 className="labelAbsolute">Please Enter Title</h5>}
             </Row>
             <Row>
-              <input
-                required
+              <NumberFormat
                 value={price}
-                onChange={(e) => {
-                  setPrice(e.currentTarget.value);
+                thousandSeparator={true}
+                prefix={'₦ '}
+                onValueChange={(values) => {
+                  const { value } = values;
+                  setPrice(value);
                 }}
-                type="text"
-                placeholder="Price In NGN"
-                id=""
               />
               {!price && (
                 <h5 className="labelAbsolute">Enter Price Per Night</h5>
@@ -208,7 +217,7 @@ const CreateCrib = ({ width, user }) => {
                   toilet
                 </span>
               )}
-              {amenitiesArr.length >= 0 && amenities != '' ? (
+              {amenitiesArr.length >= 0 && amenities !== '' ? (
                 <div className="row">
                   {amenitiesArr.map((amenity, n) => (
                     <span key={n} className="labelAbsolute">
@@ -232,8 +241,6 @@ const CreateCrib = ({ width, user }) => {
                   placeholder="Amenities"
                   id=""
                 />
-
-                <button>Add Amenity</button>
               </Row>
             </AmenitiesForm>
             <Row>
