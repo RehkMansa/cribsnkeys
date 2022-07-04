@@ -58,6 +58,13 @@ const ListingDetails = styled.div`
     flex-direction: column;
     gap: 10px;
   }
+
+  .grid-row {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
   .labelAbsolute {
     font-family: karla;
     font-weight: 500;
@@ -67,6 +74,8 @@ const ListingDetails = styled.div`
     padding: 5px 10px;
     border-radius: 20px;
     width: auto;
+    text-align: center;
+    text-transform: capitalize;
   }
 `;
 const Header = styled.div`
@@ -111,13 +120,17 @@ const SingleCrib = (props) => {
         <img src={imgURL} alt="home" />
         <div className="content">
           <p>{desc}</p>
-          {amenities.length >= 0 && amenities !== ''
-            ? amenities.map((amenity, n) => (
+          {amenities.length >= 0 && amenities !== '' ? (
+            <div className="grid-row">
+              {amenities.map((amenity, n) => (
                 <span key={n} className="labelAbsolute">
                   {amenity}
                 </span>
-              ))
-            : 'No Amenities'}
+              ))}
+            </div>
+          ) : (
+            'No Amenities For this Property'
+          )}
         </div>
       </ListingDetails>
       <AgentCard>
