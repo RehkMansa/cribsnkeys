@@ -79,7 +79,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
           <MenuItems
             icon={<FaUserAlt />}
             title={
-              user.displayName === undefined
+              !user.displayName
                 ? user.email.replace('@gmail.com', '')
                 : user.displayName
             }

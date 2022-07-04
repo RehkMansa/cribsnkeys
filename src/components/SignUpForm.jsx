@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { emailSignUp } from './firebase/utils';
 import InputElement from './InputElement';
 import { toggleStateVar } from './utils/helpers';
+import LoadGif from './LoadGif';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
-  h2 {
-    margin-bottom: 40px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 `;
 
 const FormWrapper = styled.form`
@@ -17,9 +20,10 @@ const FormWrapper = styled.form`
   gap: 20px;
 
   .alert {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    color: rgb(50, 50, 50);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
   }
 
   input {
@@ -43,6 +47,9 @@ const SignUpForm = ({ loginState, setLoginState, showLogin }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signUpErrors, setSignUpErrors] = useState('');
   const [showErrors, setShowErrors] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,9 +57,9 @@ const SignUpForm = ({ loginState, setLoginState, showLogin }) => {
     if (password !== confirmPassword) {
       setShowErrors(true);
       setSignUpErrors({ message: 'Password Does not match' });
-
       return;
     }
+    setShowLoader(true);
 
     const signUp = await emailSignUp(email, password);
 
@@ -60,55 +67,61 @@ const SignUpForm = ({ loginState, setLoginState, showLogin }) => {
 
     if (signUp.data != null) {
       showLogin(false);
+      navigate('/user');
     } else if (signUp.errors != null) {
       setShowErrors(true);
       setSignUpErrors(signUp.errors);
+      setShowLoader(false);
     }
   };
   return (
     <Wrapper>
       <h2>Create an account</h2>
-      <FormWrapper onSubmit={handleSubmit}>
-        {showErrors && <div className="alert">{signUpErrors.message}</div>}
-        <InputElement
-          placeHolder={'Email Address'}
-          type={'email'}
-          value={email}
-          onChange={(e) => {
-            setEmail(e.currentTarget.value);
-          }}
-          required
-        />
-        <InputElement
-          placeHolder={'Enter Password'}
-          type={'password'}
-          value={password}
-          onChange={(e) => {
-            setPassword(e.currentTarget.value);
-          }}
-          required
-        />
-        <InputElement
-          placeHolder={'Confirm Password'}
-          type={'password'}
-          value={confirmPassword}
-          onChange={(e) => {
-            setConfirmPassword(e.currentTarget.value);
-          }}
-          required
-        />
-        <button>Find A Crib</button>
-        <div className="formInner">
-          <p>Do you have an account ?</p>
-          <span
-            onClick={() => {
-              toggleStateVar(loginState, setLoginState);
+      {showLoader ? (
+        <LoadGif />
+      ) : (
+        <FormWrapper onSubmit={handleSubmit}>
+          {showErrors && <div className="alert">{signUpErrors.message}</div>}
+          <InputElement
+            placeHolder={'Email Address'}
+            type={'email'}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.currentTarget.value);
             }}
-          >
-            Sign In
-          </span>
-        </div>
-      </FormWrapper>
+            required
+          />
+          <InputElement
+            placeHolder={'Enter Password'}
+            type={'password'}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.currentTarget.value);
+            }}
+            required
+          />
+          <InputElement
+            placeHolder={'Confirm Password'}
+            type={'password'}
+            value={confirmPassword}
+            onChange={(e) => {
+              setConfirmPassword(e.currentTarget.value);
+            }}
+            required
+          />
+          <button>Sign Up</button>
+          <div className="formInner">
+            <p>Do you have an account ?</p>
+            <span
+              onClick={() => {
+                toggleStateVar(loginState, setLoginState);
+              }}
+            >
+              Sign In
+            </span>
+          </div>
+        </FormWrapper>
+      )}
     </Wrapper>
   );
 };

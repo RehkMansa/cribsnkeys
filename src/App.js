@@ -8,6 +8,7 @@ import Cribs from './components/Cribs';
 import Error404 from './components/Error404';
 import { auth, checkUserDB } from './components/firebase/utils';
 import HomePage from './components/HomePage';
+import LoginComponent from './components/LoginComponent';
 import RightFloatingMenu from './components/RightFloatingMenu';
 import GlobalStyles from './components/styles/Global';
 import UserPage from './components/UserPage';
@@ -76,6 +77,8 @@ function App() {
         user={currentUser}
         setLogin={setLogin}
       />
+
+      {login && <LoginComponent setShowLoginState={setLogin} />}
     </Container>
   );
 }

@@ -55,11 +55,12 @@ const UserForm = ({ width, user }) => {
   const [street, setStreet] = useState('');
   const [address, setAddress] = useState('');
   const [image, setImage] = useState('');
+  const [showLoader, setShowLoader] = useState(false);
   const [alert, setAlert] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setShowLoader(true);
     const imageVal = await uploadImage('profile-images', username, image);
 
     const updateUser = {
@@ -92,9 +93,11 @@ const UserForm = ({ width, user }) => {
       };
       await saveWithID('agents', user.uid, data);
 
+      setShowLoader(false);
       setAlert('Congratulations on your Sign up');
     } else {
       setAlert('An error occurred, please try again');
+      setShowLoader(false);
     }
     setFirstName('');
     setMiddleName('');
@@ -120,6 +123,8 @@ const UserForm = ({ width, user }) => {
             buttonText={'Post Crib'}
             link={'/cribs'}
           />
+        ) : showLoader ? (
+          <LoadGif />
         ) : (
           <FormWrapper
             onSubmit={handleSubmit}
@@ -180,7 +185,6 @@ const UserForm = ({ width, user }) => {
               required
               name=""
               placeholder="Phone number"
-              id=""
             />
             <Row>
               <input
@@ -191,7 +195,6 @@ const UserForm = ({ width, user }) => {
                 type="date"
                 name=""
                 placeholder="Age"
-                id=""
               />
               {!dob && <h5 className="labelAbsolute">Select Age</h5>}
             </Row>
@@ -206,7 +209,6 @@ const UserForm = ({ width, user }) => {
                 required
                 name=""
                 placeholder="State"
-                id=""
               />
               <input
                 value={city}
@@ -217,7 +219,6 @@ const UserForm = ({ width, user }) => {
                 required
                 name=""
                 placeholder="City"
-                id=""
               />
               <input
                 value={street}
@@ -227,7 +228,6 @@ const UserForm = ({ width, user }) => {
                 type="text"
                 name=""
                 placeholder="Street"
-                id=""
               />
             </Row>
             <input
@@ -238,10 +238,10 @@ const UserForm = ({ width, user }) => {
               type="text"
               name=""
               placeholder="Home Address"
-              id=""
             />
             <ImageUploader
               value={image}
+              required
               onClickFunc={(acceptedFiles) => {
                 setImage(acceptedFiles[0]);
               }}

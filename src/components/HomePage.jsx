@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import Cribs from './Cribs';
 import HomeSearch from './HomeSearch';
 import LeftContainer from './LeftContainer';
 import LoginComponent from './LoginComponent';
-import RightFloatingMenu from './RightFloatingMenu';
 
 export const Wrapper = styled.section`
   overflow: hidden;
@@ -29,7 +27,7 @@ export const RightContainer = styled.div`
   }
 `;
 
-const HomePage = ({ userData, showLogin, setShowLogin }) => {
+const HomePage = (props) => {
   return (
     <Wrapper>
       <LeftContainer
@@ -41,7 +39,6 @@ const HomePage = ({ userData, showLogin, setShowLogin }) => {
         <h3>Browse Featured Cribs</h3>
         <p>Show Cribs</p>
       </RightContainer>
-      {showLogin && <LoginComponent setShowLoginState={setShowLogin} />}
     </Wrapper>
   );
 };

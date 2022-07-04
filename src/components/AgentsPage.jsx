@@ -9,13 +9,14 @@ import UserForm from './UserForm';
 const AgentsPage = ({ userData }) => {
   const [showLoader, setShowLoader] = useState(false);
   const [agentsArr, setAgentsArr] = useState([]);
-  console.log(userData);
+  const [currentAgentArr, setCurrentAgentArr] = useState([]);
   useEffect(() => {
     setShowLoader(true);
 
     fetchAll('agents').then((res) => {
       setAgentsArr(res);
 
+      setCurrentAgentArr([res[0]]);
       setShowLoader(false);
 
       console.log(res);
@@ -33,10 +34,10 @@ const AgentsPage = ({ userData }) => {
             position={'bottom center'}
           />
           <RightContainer>
-            {showLoader && agentsArr.length >= 1 ? (
+            {showLoader && currentAgentArr.length >= 1 ? (
               <LoadGif />
             ) : (
-              agentsArr.map((agent) => (
+              currentAgentArr.map((agent) => (
                 <AgentSingle
                   key={agent.snapID}
                   contact={agent.contact}
