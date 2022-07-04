@@ -3,6 +3,7 @@ import Cribs from './Cribs';
 import HomeSearch from './HomeSearch';
 import LeftContainer from './LeftContainer';
 import LoginComponent from './LoginComponent';
+import SignUpForm from './SignUpForm';
 
 export const Wrapper = styled.section`
   overflow: hidden;
@@ -27,17 +28,23 @@ export const RightContainer = styled.div`
   }
 `;
 
+const Container = styled.div`
+  min-width: 100vw !important;
+`;
+
 const HomePage = (props) => {
   return (
     <Wrapper>
-      <LeftContainer
-        overlayValue={'rgba(0, 0, 0, 0.45)'}
-        bgImage={'home-bg-left.jpg'}
-        content={<HomeSearch />}
-      />
+      <Container>
+        <LeftContainer
+          overlayValue={'rgba(0, 0, 0, 0.45)'}
+          bgImage={'home-bg-left.jpg'}
+          content={<HomeSearch />}
+          position='center top'
+        />
+      </Container>
       <RightContainer>
-        <h3>Browse Featured Cribs</h3>
-        <p>Show Cribs</p>
+        <h3>My Head oo</h3>
       </RightContainer>
     </Wrapper>
   );

@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputElement from './InputElement';
 
 const Wrapper = styled.div`
   padding: 20px;
 
-  h2{
+  h2 {
     margin-bottom: 20px;
     font-size: 40px;
     text-align: center;
@@ -14,22 +15,30 @@ const Wrapper = styled.div`
 
 const FormWrapper = styled.form`
   display: flex;
-
+  gap: 20px;
   flex-direction: column;
-  gap: 10px;
 
   input {
     width: 100%;
   }
+  input,
+  button {
+    border-radius: 10px;
+    color: #000;
+  }
 `;
 
 const HomeSearch = () => {
-  const [location, setLocation] = useState('');
-  const [numberOfDays, setNumberOfDays] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/cribs');
+  };
   return (
     <Wrapper>
       <h2>Find Your Dream Crib</h2>
-      <FormWrapper>
+      <FormWrapper onSubmit={handleSubmit}>
         <InputElement placeHolder={'Location'} />
         <InputElement placeHolder={'Number Of Days'} />
         <InputElement placeHolder={'Number Of Guests'} />
