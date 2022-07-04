@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import AgentSingle from './AgentSingle';
+import { fetchAll } from './firebase/utils';
 import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';
 import LoadGif from './LoadGif';
@@ -6,6 +8,20 @@ import UserForm from './UserForm';
 
 const AgentsPage = ({ userData }) => {
   const [showLoader, setShowLoader] = useState(false);
+  const [agentsArr, setAgentsArr] = useState([]);
+
+  useEffect(() => {
+    setShowLoader(true);
+
+    fetchAll('agents').then((res) => {
+      setAgentsArr(res);
+
+      setShowLoader(false);
+
+      console.log(res);
+    });
+  }, []);
+
   return (
     <>
       {userData ? (
@@ -17,7 +33,20 @@ const AgentsPage = ({ userData }) => {
             position={'bottom center'}
           />
           <RightContainer>
-            <h4>Why me</h4>
+            {showLoader && agentsArr.length >= 1 ? (
+              <LoadGif />
+            ) : (
+              agentsArr.map((agent) => (
+                <AgentSingle
+                  key={agent.snapID}
+                  contact={agent.contact}
+                  location={agent.location}
+                  name={agent.name}
+                  user={agent.user}
+                  // width
+                />
+              ))
+            )}
           </RightContainer>
         </Wrapper>
       ) : (
