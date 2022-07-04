@@ -45,6 +45,7 @@ const Cribs = ({ userData }) => {
                       location={cribs.location}
                       price={cribs.price}
                       desc={cribs.desc}
+                      amenities={cribs.amenities}
                     />
                   ))
                 )}

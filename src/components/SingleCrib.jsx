@@ -53,6 +53,20 @@ const ListingDetails = styled.div`
 
   .content {
     line-height: 20px;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .labelAbsolute {
+    font-family: karla;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(70, 70, 70, 0.89);
+    background-color: #e7e7e7;
+    padding: 5px 10px;
+    border-radius: 20px;
+    width: auto;
   }
 `;
 const Header = styled.div`
@@ -71,7 +85,7 @@ const Header = styled.div`
   }
 `;
 const SingleCrib = (props) => {
-  const { title, imgURL, agent, location, price, desc } = props;
+  const { title, imgURL, agent, location, price, desc, amenities } = props;
   const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
@@ -97,6 +111,13 @@ const SingleCrib = (props) => {
         <img src={imgURL} alt="home" />
         <div className="content">
           <p>{desc}</p>
+          {amenities.length >= 0 && amenities !== ''
+            ? amenities.map((amenity, n) => (
+                <span key={n} className="labelAbsolute">
+                  {amenity}
+                </span>
+              ))
+            : 'No Amenities'}
         </div>
       </ListingDetails>
       <AgentCard>
