@@ -5,6 +5,17 @@ import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';
 import LoadGif from './LoadGif';
 import UserForm from './UserForm';
+import { fadeIn } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+import NavDots from './NavDots';
+import { nextItem, prevItem } from './utils/helpers';
+
+const fadeAnimation = keyframes`${fadeIn}`;
+
+const AgentWrapper = styled.div`
+  width: 100%;
+  animation: 3s ${fadeAnimation};
+`;
 
 const AgentsPage = ({ userData }) => {
   const [showLoader, setShowLoader] = useState(false);
@@ -39,17 +50,40 @@ const AgentsPage = ({ userData }) => {
             {showLoader && currentAgentArr.length >= 1 ? (
               <LoadGif />
             ) : (
-              currentAgentArr.map((agent) => (
-                <AgentSingle
-                  key={agent.snapID}
-                  contact={agent.contact}
-                  location={agent.location}
-                  name={agent.name}
-                  user={agent.user}
-                  // width
-                />
-              ))
+              <AgentWrapper>
+                {currentAgentArr.map((agent) => (
+                  <AgentSingle
+                    key={agent.snapID}
+                    contact={agent.contact}
+                    location={agent.location}
+                    name={agent.name}
+                    user={agent.user}
+                  />
+                ))}
+              </AgentWrapper>
             )}
+            <NavDots
+              onClickLeft={() => {
+                prevItem(
+                  countVar,
+                  setCountVar,
+                  divKey,
+                  setDivKey,
+                  setCurrentAgentArr,
+                  agentsArr
+                );
+              }}
+              onClickRight={() => {
+                nextItem(
+                  countVar,
+                  setCountVar,
+                  divKey,
+                  setDivKey,
+                  setCurrentAgentArr,
+                  agentsArr
+                );
+              }}
+            />
           </RightContainer>
         </Wrapper>
       ) : (

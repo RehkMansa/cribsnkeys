@@ -72,8 +72,6 @@ const Cribs = ({ userData }) => {
                   setCurrentCrib,
                   cribsArray
                 );
-
-                console.log('prev item clicked', countVar);
               }}
               onClickRight={() => {
                 nextItem(
@@ -84,8 +82,6 @@ const Cribs = ({ userData }) => {
                   setCurrentCrib,
                   cribsArray
                 );
-
-                console.log('next item clicked', countVar);
               }}
             />
           </RightContainer>
