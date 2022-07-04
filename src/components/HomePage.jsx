@@ -22,6 +22,7 @@ export const RightContainer = styled.div`
   flex-direction: column;
   overflow: hidden;
   gap: 20px;
+  max-height: 100vh;
 
   h3 {
     font-size: 50px;

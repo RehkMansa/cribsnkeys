@@ -1,16 +1,19 @@
+import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
 import { randomInt } from './utils/helpers';
 
 const Wrapper = styled.div`
   width: ${(props) => (props.bgWidth ? props.bgWidth : '100%')};
+  padding-bottom: 20px;
   text-transform: capitalize;
   &::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-  max-height: 610px;
+  max-height: 600px;
+  // outline: 1px solid red;
   overflow: auto;
 
   .email {
@@ -21,7 +24,9 @@ const Wrapper = styled.div`
     color: #f2b636;
     justify-content: start;
     gap: 10px;
+    align-items: center;
     h5 {
+      font-size: 16px;
       font-family: karla;
     }
   }
@@ -29,7 +34,7 @@ const Wrapper = styled.div`
 
 const Header = styled.div`
   align-items: center;
-  margin-top: 70px;
+  margin-top: 50px;
   img {
     width: 100px;
     height: 100px;
@@ -67,12 +72,22 @@ const DetailsInner = styled.div`
 `;
 const IconWrapper = styled.div`
   display: flex;
+  font-size: 15px;
   gap: 5px;
-  p {
-    font-size: 20px;
-  }
 `;
 const AgentSingle = ({ contact, location, name, user, width }) => {
+  const [starRatings, setStarRatings] = useState([]);
+  useEffect(() => {
+    generateStars(randomInt(2, 5));
+  }, []);
+
+  const generateStars = (num) => {
+    let newArr = [];
+    for (let i = 0; i <= num; i++) {
+      newArr.push(i);
+    }
+    setStarRatings(newArr);
+  };
   return (
     <Wrapper className="flex20 center column" bgWidth={width}>
       <Header className="flex20">
@@ -96,11 +111,12 @@ const AgentSingle = ({ contact, location, name, user, width }) => {
           <p>Middle Name: {name.middleName}</p>
           <p>Agent UID: {user.uid}</p>
         </DetailsInner>
-        <div className="rating flex20 center">
-          <h5>App Rating :</h5>
+        <div className="rating flex20">
+          <h5>Agent Rating :</h5>
           <IconWrapper>
-            <FaStar />
-            <p>{randomInt(2, 6)}</p>
+            {starRatings.length >= 1
+              ? starRatings.map((stars) => <FaStar key={stars} />)
+              : 'Agent Not Yet Rated'}
           </IconWrapper>
         </div>
       </Details>

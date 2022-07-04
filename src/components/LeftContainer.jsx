@@ -7,6 +7,7 @@ const Container = styled.div`
     props.imgPosition ? props.imgPosition : 'center'};
   background-size: cover;
   position: relative;
+  max-height: 100vh;
   min-height: 100vh;
   overflow: hidden;
   display: flex;
@@ -26,6 +27,7 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 `;
 
 const LeftContainer = ({ bgImage, content, overlayValue, position }) => {
