@@ -11,10 +11,11 @@ export const prevItem = (
   setCurrent,
   mainArr
 ) => {
-  setCount(count - 1);
-  setKeyVal(keyVal + 1);
-  if (count < 0) {
-    setCurrent(mainArr.length - 1);
+  if (count <= 0) {
+    setCount(mainArr.length - 1);
+  } else {
+    setCount(count - 1);
+    setKeyVal(keyVal + 1);
   }
   setCurrent([mainArr[count]]);
 };
@@ -26,10 +27,11 @@ export const nextItem = (
   setCurrent,
   mainArr
 ) => {
-  setCount(count + 1);
-  setKeyVal(keyVal + 1);
-  if (count > mainArr.length - 1) {
-    count(0);
+  if (count >= mainArr.length - 1) {
+    setCount(0);
+  } else {
+    setCount(count + 1);
+    setKeyVal(keyVal + 1);
   }
   setCurrent([mainArr[count]]);
 };
