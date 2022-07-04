@@ -3,6 +3,7 @@ import { onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styledComponents from 'styled-components';
+import AgentsPage from './components/AgentsPage';
 import Cribs from './components/Cribs';
 import Error404 from './components/Error404';
 import { auth, checkUserDB } from './components/firebase/utils';
@@ -13,6 +14,18 @@ import UserPage from './components/UserPage';
 const Container = styledComponents.main`
   overflow: hidden;
   position: relative;
+
+  .flex20{
+    display: flex;
+    gap: 20px
+  }
+  .column{
+    flex-direction: column;
+  }
+  .center{
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 function App() {
@@ -52,6 +65,10 @@ function App() {
         />
         <Route path="/user" element={<UserPage userData={currentUser} />} />
         <Route path="/cribs/*" element={<Cribs userData={currentUser} />} />
+        <Route
+          path="/agents/*"
+          element={<AgentsPage userData={currentUser} />}
+        />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <RightFloatingMenu

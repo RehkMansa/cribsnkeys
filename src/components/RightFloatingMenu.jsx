@@ -5,6 +5,7 @@ import {
   FaSignOutAlt,
   FaUserAlt,
   FaVihara,
+  FaUserCheck,
 } from 'react-icons/fa';
 import { RiLoginBoxFill } from 'react-icons/ri';
 import MenuItems from './MenuItems';
@@ -40,16 +41,22 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
       },
     },
     {
+      id: 2,
+      name: 'Sign In',
+      icon: <FaGoogle />,
+      function: signInWithGoogle,
+    },
+    {
       id: 3,
       name: 'Cribs',
       icon: <FaVihara />,
       link: '/cribs',
     },
     {
-      id: 2,
-      name: 'Sign In',
-      icon: <FaGoogle />,
-      function: signInWithGoogle,
+      id: 4,
+      name: 'Agents',
+      icon: <FaUserCheck />,
+      link: '/agents',
     },
   ];
   return (
@@ -68,6 +75,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
         <>
           <MenuItems icon={<FaHome />} title={'Home'} link="/" />
           <MenuItems icon={<FaVihara />} title={'Cribs'} link="/cribs" />
+          <MenuItems icon={<FaUserCheck />} title={'Agents'} link="/agents" />
           <MenuItems
             icon={<FaUserAlt />}
             title={

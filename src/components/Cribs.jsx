@@ -5,6 +5,7 @@ import CreateCrib from './CreateCrib';
 import SingleCrib from './SingleCrib';
 import { useEffect, useState } from 'react';
 import { fetchAll } from './firebase/utils';
+import LoadGif from './LoadGif';
 
 const Cribs = ({ userData }) => {
   const [cribsArray, setCribsArray] = useState([]);
@@ -34,7 +35,7 @@ const Cribs = ({ userData }) => {
               />
               <RightContainer>
                 {showLoader && cribsArray.length <= 0 ? (
-                  <h3>Loading ...</h3>
+                  <LoadGif />
                 ) : (
                   cribsArray.map((cribs, n) => (
                     <SingleCrib

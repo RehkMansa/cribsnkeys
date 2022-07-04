@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: ${(props) => props.bgWidth};
+  height: ${(props) => props.bgHeight};
+`;
 
-const LoadGif = () => {
+const LoadGif = ({ width, height }) => {
   return (
-    <Wrapper>
+    <Wrapper bgWidth={width} bgHeight={height}>
       <img src="/images/285.gif" alt="loader" />
     </Wrapper>
   );

@@ -99,7 +99,7 @@ const SingleCrib = (props) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <Header>
         <div className="details">
           <h3>{title}</h3>
