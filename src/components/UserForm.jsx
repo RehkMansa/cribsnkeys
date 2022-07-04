@@ -4,6 +4,7 @@ import Error404 from './Error404';
 import { saveWithID, updateDocument, uploadImage } from './firebase/utils';
 import FormAlert from './FormAlert';
 import ImageUploader from './ImageUploader';
+import LoadGif from './LoadGif';
 
 const FormWrapper = styled.form`
   gap: 20px;
@@ -35,6 +36,11 @@ const Row = styled.div`
     font-weight: 500;
     color: var(--grey);
   }
+`;
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
 `;
 
 const UserForm = ({ width, user }) => {
@@ -106,142 +112,149 @@ const UserForm = ({ width, user }) => {
 
   return (
     <>
-      {user.role === 'agent' ? (
-        <Error404
-          title={'Agent Registration Complete'}
-          style={{ textAlign: 'center' }}
-          buttonText={'Post Crib'}
-          link={'/cribs'}
-        />
+      {user ? (
+        user.role === 'agent' ? (
+          <Error404
+            title={'Agent Registration Complete'}
+            style={{ textAlign: 'center' }}
+            buttonText={'Post Crib'}
+            link={'/cribs'}
+          />
+        ) : (
+          <FormWrapper
+            onSubmit={handleSubmit}
+            formWidth={width}
+            className="form-flex"
+          >
+            <h3>Do you want to be an agent ?</h3>
+            <FormAlert
+              bgColor={'rgba(7, 12, 31, 0.8)'}
+              alertState={setAlert}
+              alertVar={alert}
+            />
+            <Row>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => {
+                  setFirstName(e.currentTarget.value);
+                }}
+                required
+                placeholder="First Name"
+              />
+              <input
+                type="text"
+                value={middleName}
+                onChange={(e) => {
+                  setMiddleName(e.currentTarget.value);
+                }}
+                required
+                placeholder="Middle name"
+              />
+              <input
+                value={surname}
+                onChange={(e) => {
+                  setSurname(e.currentTarget.value);
+                }}
+                type="text"
+                required
+                placeholder="Surname"
+              />
+            </Row>
+            <input
+              value={username}
+              onChange={(e) => {
+                setUsername(e.currentTarget.value);
+              }}
+              type="text"
+              required
+              name=""
+              placeholder="Enter Username"
+            />
+            <input
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.currentTarget.value);
+              }}
+              type="tel"
+              required
+              name=""
+              placeholder="Phone number"
+              id=""
+            />
+            <Row>
+              <input
+                value={dob}
+                onChange={(e) => {
+                  setDob(e.currentTarget.value);
+                }}
+                type="date"
+                name=""
+                placeholder="Age"
+                id=""
+              />
+              {!dob && <h5 className="labelAbsolute">Select Age</h5>}
+            </Row>
+            <h4>Location Details</h4>
+            <Row>
+              <input
+                value={state}
+                onChange={(e) => {
+                  setState(e.currentTarget.value);
+                }}
+                type="text"
+                required
+                name=""
+                placeholder="State"
+                id=""
+              />
+              <input
+                value={city}
+                onChange={(e) => {
+                  setCity(e.currentTarget.value);
+                }}
+                type="text"
+                required
+                name=""
+                placeholder="City"
+                id=""
+              />
+              <input
+                value={street}
+                onChange={(e) => {
+                  setStreet(e.currentTarget.value);
+                }}
+                type="text"
+                name=""
+                placeholder="Street"
+                id=""
+              />
+            </Row>
+            <input
+              value={address}
+              onChange={(e) => {
+                setAddress(e.currentTarget.value);
+              }}
+              type="text"
+              name=""
+              placeholder="Home Address"
+              id=""
+            />
+            <ImageUploader
+              value={image}
+              onClickFunc={(acceptedFiles) => {
+                setImage(acceptedFiles[0]);
+              }}
+              title={'Click To Upload Profile Picture'}
+            />
+            <button>Submit</button>
+          </FormWrapper>
+        )
       ) : (
-        <FormWrapper
-          onSubmit={handleSubmit}
-          formWidth={width}
-          className="form-flex"
-        >
-          <h3>Do you want to be an agent ?</h3>
-          <FormAlert
-            bgColor={'rgba(7, 12, 31, 0.8)'}
-            alertState={setAlert}
-            alertVar={alert}
-          />
-          <Row>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => {
-                setFirstName(e.currentTarget.value);
-              }}
-              required
-              placeholder="First Name"
-            />
-            <input
-              type="text"
-              value={middleName}
-              onChange={(e) => {
-                setMiddleName(e.currentTarget.value);
-              }}
-              required
-              placeholder="Middle name"
-            />
-            <input
-              value={surname}
-              onChange={(e) => {
-                setSurname(e.currentTarget.value);
-              }}
-              type="text"
-              required
-              placeholder="Surname"
-            />
-          </Row>
-          <input
-            value={username}
-            onChange={(e) => {
-              setUsername(e.currentTarget.value);
-            }}
-            type="text"
-            required
-            name=""
-            placeholder="Enter Username"
-          />
-          <input
-            value={phone}
-            onChange={(e) => {
-              setPhone(e.currentTarget.value);
-            }}
-            type="tel"
-            required
-            name=""
-            placeholder="Phone number"
-            id=""
-          />
-          <Row>
-            <input
-              value={dob}
-              onChange={(e) => {
-                setDob(e.currentTarget.value);
-              }}
-              type="date"
-              name=""
-              placeholder="Age"
-              id=""
-            />
-            {!dob && <h5 className="labelAbsolute">Select Age</h5>}
-          </Row>
-          <h4>Location Details</h4>
-          <Row>
-            <input
-              value={state}
-              onChange={(e) => {
-                setState(e.currentTarget.value);
-              }}
-              type="text"
-              required
-              name=""
-              placeholder="State"
-              id=""
-            />
-            <input
-              value={city}
-              onChange={(e) => {
-                setCity(e.currentTarget.value);
-              }}
-              type="text"
-              required
-              name=""
-              placeholder="City"
-              id=""
-            />
-            <input
-              value={street}
-              onChange={(e) => {
-                setStreet(e.currentTarget.value);
-              }}
-              type="text"
-              name=""
-              placeholder="Street"
-              id=""
-            />
-          </Row>
-          <input
-            value={address}
-            onChange={(e) => {
-              setAddress(e.currentTarget.value);
-            }}
-            type="text"
-            name=""
-            placeholder="Home Address"
-            id=""
-          />
-          <ImageUploader
-            value={image}
-            onClickFunc={(acceptedFiles) => {
-              setImage(acceptedFiles[0]);
-            }}
-            title={'Click To Upload Profile Picture'}
-          />
-          <button>Submit</button>
-        </FormWrapper>
+        <Wrapper className="flex20 center column">
+          <h3 style={{ fontSize: '40px' }}>Log In to view actions</h3>
+          <LoadGif />
+        </Wrapper>
       )}
     </>
   );

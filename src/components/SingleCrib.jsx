@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   margin-top: 40px;
   max-height: 600px;
   overflow: auto;
+  text-transform: capitalize;
   width: 100%;
   svg {
     color: var(--gold);
@@ -25,6 +26,10 @@ const Wrapper = styled.div`
   .column {
     flex-direction: column;
     gap: 7px;
+  }
+
+  .username {
+    text-transform: none;
   }
 `;
 const AgentCard = styled.div`
@@ -57,6 +62,10 @@ const ListingDetails = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    p {
+      text-transform: none;
+    }
   }
 
   .grid-row {
@@ -114,7 +123,7 @@ const SingleCrib = (props) => {
             </div>
           </div>
         </div>
-        <button>N{price}</button>
+        <button>₦{Number(price).toLocaleString()}</button>
       </Header>
       <ListingDetails>
         <img src={imgURL} alt="home" />
@@ -137,7 +146,7 @@ const SingleCrib = (props) => {
         <img src={agent.image} alt={agent.displayName} />
         <div className="details-inner column">
           <div className="icon-holder">
-            <p>{agent.displayName}</p>
+            <p className="username">{agent.displayName}</p>
             <MdVerified />
           </div>
           <p>{agent.uid}</p>

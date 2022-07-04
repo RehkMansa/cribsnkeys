@@ -153,7 +153,7 @@ const CreateCrib = ({ width, user }) => {
 
   return (
     <>
-      {user.role === 'agent' ? (
+      {user && user.role === 'agent' ? (
         showLoader !== false ? (
           <LoadGif />
         ) : (

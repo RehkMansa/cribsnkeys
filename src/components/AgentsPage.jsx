@@ -9,7 +9,7 @@ import UserForm from './UserForm';
 const AgentsPage = ({ userData }) => {
   const [showLoader, setShowLoader] = useState(false);
   const [agentsArr, setAgentsArr] = useState([]);
-
+  console.log(userData);
   useEffect(() => {
     setShowLoader(true);
 
@@ -24,7 +24,7 @@ const AgentsPage = ({ userData }) => {
 
   return (
     <>
-      {userData ? (
+      {agentsArr.length >= 1 ? (
         <Wrapper>
           <LeftContainer
             content={<UserForm user={userData} />}
