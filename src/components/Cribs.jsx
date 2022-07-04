@@ -6,16 +6,20 @@ import SingleCrib from './SingleCrib';
 import { useEffect, useState } from 'react';
 import { fetchAll } from './firebase/utils';
 import LoadGif from './LoadGif';
+import NavDots from './NavDots';
 
 const Cribs = ({ userData }) => {
   const [cribsArray, setCribsArray] = useState([]);
+  const [divKey, setDivKey] = useState(0);
+  const [currentCrib, setCurrentCrib] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
+  const [countVar, setCountVar] = useState(1);
   useEffect(() => {
     setShowLoader(true);
     fetchAll('cribs').then((res) => {
       setCribsArray(res);
+      setCurrentCrib([res[0]]);
       setShowLoader(false);
-
       console.log(res);
     });
   }, []);
@@ -34,10 +38,10 @@ const Cribs = ({ userData }) => {
                 content={<CreateCrib user={userData} />}
               />
               <RightContainer>
-                {showLoader && cribsArray.length <= 0 ? (
+                {showLoader && currentCrib.length >= 0 ? (
                   <LoadGif />
                 ) : (
-                  cribsArray.map((cribs, n) => (
+                  currentCrib.map((cribs, n) => (
                     <SingleCrib
                       key={n}
                       title={cribs.title}
@@ -50,6 +54,14 @@ const Cribs = ({ userData }) => {
                     />
                   ))
                 )}
+                <NavDots
+                  onClickLeft={() => {
+                    console.log('clicked');
+                  }}
+                  onClickRight={() => {
+                    console.log('clicked');
+                  }}
+                />
               </RightContainer>
             </>
           }

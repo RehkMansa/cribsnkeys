@@ -8,6 +8,11 @@ const Wrapper = styled.div`
   overflow: auto;
   text-transform: capitalize;
   width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   svg {
     color: var(--gold);
   }
@@ -111,7 +116,7 @@ const SingleCrib = (props) => {
     <Wrapper {...props}>
       <Header>
         <div className="details">
-          <h3>{title}</h3>
+          <h3 style={{ fontSize: 25 }}>{title}</h3>
           <div className="details-inner">
             <div className="icon-holder">
               <FaMapMarkerAlt />

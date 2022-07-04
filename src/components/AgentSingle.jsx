@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   max-height: 600px;
-  // outline: 1px solid red;
   overflow: auto;
 
   .email {

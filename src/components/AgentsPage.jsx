@@ -9,7 +9,9 @@ import UserForm from './UserForm';
 const AgentsPage = ({ userData }) => {
   const [showLoader, setShowLoader] = useState(false);
   const [agentsArr, setAgentsArr] = useState([]);
+  const [divKey, setDivKey] = useState(0);
   const [currentAgentArr, setCurrentAgentArr] = useState([]);
+  const [countVar, setCountVar] = useState(1);
   useEffect(() => {
     setShowLoader(true);
 
