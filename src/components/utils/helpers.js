@@ -33,3 +33,4 @@ export const nextItem = (
   }
   setCurrent([mainArr[count]]);
 };
+export const showLog = (message) => console.log(message);
