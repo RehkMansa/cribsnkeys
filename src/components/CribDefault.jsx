@@ -6,7 +6,7 @@ const CribDefault = () => {
     <Wrapper>
       <LeftContainer bgImage={''} content={<h1>Hello</h1>} />
       <RightContainer>
-        <h3>My name is rehk</h3>
+      
       </RightContainer>
     </Wrapper>
   );
