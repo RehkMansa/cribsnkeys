@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-  max-height: 600px;
+  max-height: 700px;
   overflow: auto;
 
   .email {
@@ -43,7 +43,7 @@ const Header = styled.div`
   h2 {
     margin: 10px 0;
     color: #f2b636;
-    font-size: 75px;
+    font-size: 55px;
     font-weight: 700;
     line-height: 1;
   }
@@ -74,8 +74,9 @@ const IconWrapper = styled.div`
   font-size: 15px;
   gap: 5px;
 `;
-const AgentSingle = ({ contact, location, name, user, width }) => {
+const AgentSingle = ({ contact, location, name, user, width, onClickFunc }) => {
   const [starRatings, setStarRatings] = useState([]);
+
   useEffect(() => {
     generateStars(randomInt(2, 5));
   }, []);
@@ -109,15 +110,17 @@ const AgentSingle = ({ contact, location, name, user, width }) => {
           <p>Phone Number: {contact.number}</p>
           <p>Middle Name: {name.middleName}</p>
           <p>Agent UID: {user.uid}</p>
+          <div className="rating flex20">
+            <h5>Agent Rating :</h5>
+            <IconWrapper>
+              {starRatings.length >= 1
+                ? starRatings.map((stars) => <FaStar key={stars} />)
+                : 'Agent Not Yet Rated'}
+            </IconWrapper>
+          </div>
+
+          {onClickFunc && <button onClick={onClickFunc}>View Agent</button>}
         </DetailsInner>
-        <div className="rating flex20">
-          <h5>Agent Rating :</h5>
-          <IconWrapper>
-            {starRatings.length >= 1
-              ? starRatings.map((stars) => <FaStar key={stars} />)
-              : 'Agent Not Yet Rated'}
-          </IconWrapper>
-        </div>
       </Details>
     </Wrapper>
   );

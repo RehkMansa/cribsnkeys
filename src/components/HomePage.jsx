@@ -29,7 +29,7 @@ export const RightContainer = styled.div`
 `;
 
 const Container = styled.div`
-  min-width: 100vw !important;
+  // min-width: 100vw !important;
 `;
 
 const HomePage = (props) => {

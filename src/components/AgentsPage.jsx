@@ -9,6 +9,7 @@ import { fadeIn } from 'react-animations';
 import styled, { keyframes } from 'styled-components';
 import NavDots from './NavDots';
 import { nextItem, prevItem } from './utils/helpers';
+import { useNavigate } from 'react-router-dom';
 
 const fadeAnimation = keyframes`${fadeIn}`;
 
@@ -23,6 +24,7 @@ const AgentsPage = ({ userData }) => {
   const [divKey, setDivKey] = useState(0);
   const [currentAgentArr, setCurrentAgentArr] = useState([]);
   const [countVar, setCountVar] = useState(1);
+  const navigate = useNavigate();
   useEffect(() => {
     setShowLoader(true);
 
@@ -58,6 +60,9 @@ const AgentsPage = ({ userData }) => {
                     location={agent.location}
                     name={agent.name}
                     user={agent.user}
+                    onClickFunc={() => {
+                      navigate(agent.snapID, { state: agent });
+                    }}
                   />
                 ))}
               </AgentWrapper>
