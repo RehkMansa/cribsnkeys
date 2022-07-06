@@ -19,17 +19,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageUploader = ({ title, onClickFunc, className }) => {
+const ImageUploader = ({ title, clickFunc, className }) => {
   const [fileName, setFileName] = useState('');
   return (
     <Dropzone
       onDrop={(acceptedFiles) => {
         setFileName(acceptedFiles[0].name);
-        onClickFunc(acceptedFiles);
+        clickFunc(acceptedFiles);
       }}
     >
       {({ getRootProps, getInputProps }) => (
-        <Wrapper className={className} onClick={onClickFunc}>
+        <Wrapper className={className} onClick={clickFunc}>
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <div className="text-content">

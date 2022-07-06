@@ -68,7 +68,7 @@ const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {
             icon={menu.icon}
             link={menu.link}
             title={menu.name}
-            onClickFunc={menu.function}
+            clickFunc={menu.function}
           />
         ))
       ) : (

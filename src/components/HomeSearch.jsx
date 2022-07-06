@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import InputElement from './InputElement';
 
@@ -30,18 +34,47 @@ const FormWrapper = styled.form`
 
 const HomeSearch = () => {
   const navigate = useNavigate();
+  const [location, setLocation] = useState('');
+  const [days, setDays] = useState('');
+  const [guests, setGuests] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/search');
+    const query = {
+      location,
+      days,
+      guests,
+    };
+    navigate({ pathname: '/search', search: `?${createSearchParams(query)}` });
   };
   return (
     <Wrapper>
       <h2>Find Your Dream Crib</h2>
       <FormWrapper onSubmit={handleSubmit}>
-        <InputElement placeHolder={'Location'} />
-        <InputElement placeHolder={'Number Of Days'} />
-        <InputElement placeHolder={'Number Of Guests'} />
+        <InputElement
+          onChange={(e) => {
+            setLocation(e.target.value);
+          }}
+          required
+          value={location}
+          placeHolder={'Location'}
+        />
+        <InputElement
+          onChange={(e) => {
+            setDays(e.target.value);
+          }}
+          required
+          value={days}
+          placeHolder={'Number Of Days'}
+        />
+        <InputElement
+          onChange={(e) => {
+            setGuests(e.target.value);
+          }}
+          required
+          value={guests}
+          placeHolder={'Number Of Guests'}
+        />
         <button>Find A Crib</button>
       </FormWrapper>
     </Wrapper>

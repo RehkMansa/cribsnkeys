@@ -74,7 +74,7 @@ const IconWrapper = styled.div`
   font-size: 15px;
   gap: 5px;
 `;
-const AgentSingle = ({ contact, location, name, user, width, onClickFunc }) => {
+const AgentSingle = ({ contact, location, name, user, width, clickFunc }) => {
   const [starRatings, setStarRatings] = useState([]);
 
   useEffect(() => {
@@ -119,7 +119,7 @@ const AgentSingle = ({ contact, location, name, user, width, onClickFunc }) => {
             </IconWrapper>
           </div>
 
-          {onClickFunc && <button onClick={onClickFunc}>View Agent</button>}
+          {clickFunc && <button onClick={clickFunc}>View Agent</button>}
         </DetailsInner>
       </Details>
     </Wrapper>

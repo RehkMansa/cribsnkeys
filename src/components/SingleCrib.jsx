@@ -126,7 +126,7 @@ const SingleCrib = (props) => {
     desc,
     amenities,
     height,
-    onClickFunc,
+    func,
   } = props;
   const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -151,7 +151,7 @@ const SingleCrib = (props) => {
             </div>
           </div>
         </div>
-        {onClickFunc && <button onClick={onClickFunc}>View Crib</button>}
+        {func && <button onClick={func}>View Crib</button>}
       </Header>
       <ListingDetails>
         <img src={imgURL} alt={title} />

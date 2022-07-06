@@ -60,7 +60,7 @@ const AgentsPage = ({ userData }) => {
                     location={agent.location}
                     name={agent.name}
                     user={agent.user}
-                    onClickFunc={() => {
+                    clickFunc={() => {
                       navigate(agent.snapID, { state: agent });
                     }}
                   />

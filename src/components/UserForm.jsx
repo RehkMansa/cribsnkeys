@@ -242,7 +242,7 @@ const UserForm = ({ width, user }) => {
             <ImageUploader
               value={image}
               required
-              onClickFunc={(acceptedFiles) => {
+              clickFunc={(acceptedFiles) => {
                 setImage(acceptedFiles[0]);
               }}
               title={'Click To Upload Profile Picture'}

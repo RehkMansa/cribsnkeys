@@ -59,7 +59,7 @@ const Cribs = ({ userData }) => {
                     price={cribs.price}
                     desc={cribs.desc}
                     amenities={cribs.amenities}
-                    onClickFunc={() => {
+                    func={() => {
                       navigate(cribs.snapID, { state: cribs });
                     }}
                   />

@@ -259,7 +259,7 @@ const CreateCrib = ({ width, user }) => {
               className={'image-uploader'}
               value={image}
               required
-              onClickFunc={(acceptedFiles) => {
+              clickFunc={(acceptedFiles) => {
                 setImage(acceptedFiles[0]);
               }}
               title={'Upload An Image Of The Room'}
