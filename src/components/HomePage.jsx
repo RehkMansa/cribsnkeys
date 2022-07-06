@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-import Cribs from './Cribs';
 import HomeSearch from './HomeSearch';
 import LeftContainer from './LeftContainer';
-import LoginComponent from './LoginComponent';
-import SignUpForm from './SignUpForm';
 
 export const Wrapper = styled.section`
   overflow: hidden;
@@ -19,9 +16,9 @@ export const RightContainer = styled.div`
   justify-content: center;
   position: relative;
   flex-direction: column;
-  overflow: hidden;
+  overflow: scroll;
   gap: 20px;
-  max-height: 100vh;
+  height: 100vh;
 
   h3 {
     font-size: 50px;
@@ -40,7 +37,7 @@ const HomePage = (props) => {
           overlayValue={'rgba(0, 0, 0, 0.45)'}
           bgImage={'home-bg-left.jpg'}
           content={<HomeSearch />}
-          position='center top'
+          position="center top"
         />
       </Container>
       <RightContainer>

@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin-top: 40px;
-  // max-height: ${(props) => (props.itemHeight ? props.itemHeight : '600px')};
-  overflow: auto;
   text-transform: capitalize;
   width: 100%;
   &::-webkit-scrollbar {
