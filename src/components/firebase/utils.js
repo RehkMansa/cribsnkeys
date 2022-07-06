@@ -9,6 +9,7 @@ import {
   getFirestore,
   setDoc,
   updateDoc,
+  where,
 } from 'firebase/firestore';
 import {
   signInWithPopup,
@@ -145,4 +146,16 @@ export const fetchAll = async (dbLocation) => {
   });
 
   return dataResponse;
+};
+
+export const queryDB = async (dbLocation, queryLocation, queryParams) => {
+  const colRef = collection(db, dbLocation);
+  const queryRef = where(queryLocation, '==', queryParams);
+  const q = query(colRef, queryRef);
+
+  const querySnapShot = await getDocs(q);
+
+  querySnapShot.forEach((doc) => {
+    console.log(doc.id, '=>', doc.data());
+  });
 };
