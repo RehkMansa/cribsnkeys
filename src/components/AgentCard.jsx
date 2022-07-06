@@ -1,15 +1,50 @@
 import AgentSingle from './AgentSingle';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LeftContainer from './LeftContainer';
-import { Wrapper } from './HomePage';
+import { RightContainer, Wrapper } from './HomePage';
+import styled from 'styled-components';
+
+const ContentWrap = styled.div`
+  background-color: rgba(7, 12, 31, 0.9);
+  width: 100%;
+  border-radius: 20px;
+`;
 
 const AgentCard = () => {
   const { state } = useLocation();
-  const [agentData] = useState(state);
+  const [agent] = useState(state);
+  
+
+  useEffect(() => {
+    
+  }, []);
+
   return (
     <Wrapper>
-      <LeftContainer bgImage={'smiling-agent.jpg'} />
+      <LeftContainer
+        bgImage={'man-on-glass.jpg'}
+        position={'center'}
+        overlayValue={'rgba(0, 0, 0, 0.4)'}
+        content={
+          <ContentWrap>
+            <AgentSingle
+              contact={agent.contact}
+              location={agent.location}
+              name={agent.name}
+              user={agent.user}
+            />
+          </ContentWrap>
+        }
+      />
+      <RightContainer>
+        <AgentSingle
+          contact={agent.contact}
+          location={agent.location}
+          name={agent.name}
+          user={agent.user}
+        />
+      </RightContainer>
     </Wrapper>
   );
 };
