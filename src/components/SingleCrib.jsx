@@ -1,9 +1,4 @@
-import {
-  FaMapMarkerAlt,
-  FaMoneyBill,
-  FaMoneyBillAlt,
-  FaStar,
-} from 'react-icons/fa';
+import { FaMapMarkerAlt, FaMoneyBillAlt, FaStar } from 'react-icons/fa';
 import { MdVerified } from 'react-icons/md';
 import styled from 'styled-components';
 
@@ -101,7 +96,6 @@ const ListingDetails = styled.div`
       text-transform: none;
     }
   }
-
 `;
 const Header = styled.div`
   padding: 20px 0;

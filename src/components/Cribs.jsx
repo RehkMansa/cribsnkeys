@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';
 import CreateCrib from './CreateCrib';

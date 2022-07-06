@@ -8,7 +8,7 @@ import { queryDB } from './firebase/utils';
 import SingleCrib from './SingleCrib';
 import LoadGif from './LoadGif';
 
-const ContentWrap = styled.div`
+export const ContentWrap = styled.div`
   background-color: rgba(7, 12, 31, 0.9);
   width: 100%;
   border-radius: 20px;
@@ -82,7 +82,7 @@ const AgentCard = () => {
       ) : (
         <>
           <LeftContainer
-            bgImage={'man-on-glass.jpg'}
+            bgImage={'man-on-glass2.jpg'}
             position={'center'}
             overlayValue={'rgba(0, 0, 0, 0.4)'}
             content={

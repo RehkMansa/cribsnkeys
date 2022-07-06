@@ -149,6 +149,15 @@ export const fetchAll = async (dbLocation) => {
   return dataResponse;
 };
 
+export const fetchSingle = async (dbLocation, uid) => {
+  const docRef = doc(db, dbLocation, uid);
+
+  const data = await getDoc(docRef).then((res) => {
+    return res.data();
+  });
+  return data;
+};
+
 export const queryDB = async (dbLocation, queryLocation, queryParams) => {
   const colRef = collection(db, dbLocation);
   const queryRef = where(queryLocation, '==', queryParams);
