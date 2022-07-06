@@ -3,7 +3,6 @@ import LeftContainer from './LeftContainer';
 import UserForm from './UserForm';
 import styled from 'styled-components';
 import ImageUploader from './ImageUploader';
-import RightFloatingMenu from './RightFloatingMenu';
 import { updateDocument, uploadImage } from './firebase/utils';
 import { useState } from 'react';
 import FormAlert from './FormAlert';
@@ -55,7 +54,7 @@ const UserPage = ({ userData }) => {
         image: imageVal.imageURL,
       };
 
-      const echoMe = await updateDocument('users', userData.uid, data);
+      await updateDocument('users', userData.uid, data);
 
       setAlert('Profile updated Successfully');
       setShowLoader(false);
@@ -113,7 +112,7 @@ const UserPage = ({ userData }) => {
                     placeholder="Enter username"
                   />
                   <ImageUploader
-                    onClickFunc={(acceptedFiles) => {
+                    clickFunc={(acceptedFiles) => {
                       setImage(acceptedFiles[0]);
                     }}
                     className={'uploadImage'}

@@ -67,7 +67,7 @@ const UserForm = ({ width, user }) => {
       role: 'agent',
     };
 
-    const echoMe = await updateDocument('users', user.uid, updateUser);
+    await updateDocument('users', user.uid, updateUser);
 
     if (imageVal) {
       const data = {
