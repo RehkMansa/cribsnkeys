@@ -12,6 +12,7 @@ import { auth, checkUserDB } from './components/firebase/utils';
 import HomePage from './components/HomePage';
 import LoginComponent from './components/LoginComponent';
 import RightFloatingMenu from './components/RightFloatingMenu';
+import SearchPage from './components/SearchPage';
 import GlobalStyles from './components/styles/Global';
 import UserPage from './components/UserPage';
 const Container = styledComponents.main`
@@ -78,6 +79,7 @@ function App() {
           element={<AgentCard userData={currentUser} />}
         />
         <Route path="*" element={<Error404 />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
       <RightFloatingMenu
         loginState={login}

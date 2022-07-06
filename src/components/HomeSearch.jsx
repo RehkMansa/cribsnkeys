@@ -33,7 +33,7 @@ const HomeSearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/cribs');
+    navigate('/search');
   };
   return (
     <Wrapper>
