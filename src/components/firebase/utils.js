@@ -7,6 +7,7 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  query,
   setDoc,
   updateDoc,
   where,
@@ -155,7 +156,11 @@ export const queryDB = async (dbLocation, queryLocation, queryParams) => {
 
   const querySnapShot = await getDocs(q);
 
+  let data = [];
+
   querySnapShot.forEach((doc) => {
-    console.log(doc.id, '=>', doc.data());
+    data.push({ docID: doc.id, data: doc.data() });
   });
+
+  return data;
 };

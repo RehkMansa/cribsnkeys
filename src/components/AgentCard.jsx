@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import LeftContainer from './LeftContainer';
 import { RightContainer, Wrapper } from './HomePage';
 import styled from 'styled-components';
+import { queryDB } from './firebase/utils';
 
 const ContentWrap = styled.div`
   background-color: rgba(7, 12, 31, 0.9);
@@ -14,10 +15,12 @@ const ContentWrap = styled.div`
 const AgentCard = () => {
   const { state } = useLocation();
   const [agent] = useState(state);
-  
 
   useEffect(() => {
-    
+    // console.log(state);
+    queryDB('cribs', 'agent.uid', state.snapID).then((data) => {
+      console.log(data);
+    });
   }, []);
 
   return (
