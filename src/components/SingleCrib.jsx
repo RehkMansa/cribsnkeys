@@ -1,4 +1,9 @@
-import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
+import {
+  FaMapMarkerAlt,
+  FaMoneyBill,
+  FaMoneyBillAlt,
+  FaStar,
+} from 'react-icons/fa';
 import { MdVerified } from 'react-icons/md';
 import styled from 'styled-components';
 
@@ -47,10 +52,36 @@ const AgentCard = styled.div`
     object-fit: cover;
   }
 `;
+
+const AgentInner = styled.div`
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  .grid-row {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .labelAbsolute {
+    font-family: karla;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(70, 70, 70, 0.89);
+    background-color: #e7e7e7;
+    padding: 7px 10px;
+    border-radius: 20px;
+    width: auto;
+    text-align: center;
+    text-transform: capitalize;
+  }
+`;
+
 const ListingDetails = styled.div`
   img {
     width: 100%;
-    height: 250px;
+    height: 220px;
     border-radius: 10px;
     object-fit: cover;
   }
@@ -70,25 +101,6 @@ const ListingDetails = styled.div`
       text-transform: none;
     }
   }
-
-  .grid-row {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .labelAbsolute {
-    font-family: karla;
-    font-weight: 500;
-    font-size: 15px;
-    color: rgba(70, 70, 70, 0.89);
-    background-color: #e7e7e7;
-    padding: 5px 10px;
-    border-radius: 20px;
-    width: auto;
-    text-align: center;
-    text-transform: capitalize;
-  }
 `;
 const Header = styled.div`
   padding: 20px 0;
@@ -106,8 +118,17 @@ const Header = styled.div`
   }
 `;
 const SingleCrib = (props) => {
-  const { title, imgURL, agent, location, price, desc, amenities, height } =
-    props;
+  const {
+    title,
+    imgURL,
+    agent,
+    location,
+    price,
+    desc,
+    amenities,
+    height,
+    onClickFunc,
+  } = props;
   const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
@@ -123,39 +144,46 @@ const SingleCrib = (props) => {
             </div>
             <div className="icon-holder">
               <FaStar />
-              <p>{randomInt(2, 5)}</p>
+              <p>{randomInt(3, 5)}</p>
+            </div>
+            <div className="icon-holder">
+              <FaMoneyBillAlt />
+              <p>₦{Number(price).toLocaleString()}</p>
             </div>
           </div>
         </div>
-        <button>₦{Number(price).toLocaleString()}</button>
+        {!onClickFunc && <button onClick={onClickFunc}>View Crib</button>}
       </Header>
       <ListingDetails>
-        <img src={imgURL} alt="home" />
+        <img src={imgURL} alt={title} />
         <div className="content">
           <p>{desc}</p>
-          {amenities.length >= 0 && amenities !== '' ? (
-            <div className="grid-row">
-              {amenities.map((amenity, n) => (
-                <span key={n} className="labelAbsolute">
-                  {amenity}
-                </span>
-              ))}
-            </div>
-          ) : (
-            'No Amenities For this Property'
-          )}
         </div>
       </ListingDetails>
-      <AgentCard>
-        <img src={agent.image} alt={agent.displayName} />
-        <div className="details-inner column">
-          <div className="icon-holder">
-            <p className="username">{agent.displayName}</p>
-            <MdVerified />
+      <AgentInner className="row">
+        {amenities.length >= 0 && amenities !== '' ? (
+          <div className="grid-row">
+            {amenities.map((amenity, n) => (
+              <span key={n} className="labelAbsolute">
+                {amenity}
+              </span>
+            ))}
           </div>
-          <p>{agent.uid}</p>
-        </div>
-      </AgentCard>
+        ) : (
+          <span className="labelAbsolute">No Amenities For this Property</span>
+        )}
+
+        <AgentCard>
+          <img src={agent.image} alt={agent.displayName} />
+          <div className="details-inner column">
+            <div className="icon-holder">
+              <p className="username">{agent.displayName}</p>
+              <MdVerified />
+            </div>
+            <p>{agent.uid}</p>
+          </div>
+        </AgentCard>
+      </AgentInner>
     </Wrapper>
   );
 };
