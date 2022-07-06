@@ -159,7 +159,7 @@ export const queryDB = async (dbLocation, queryLocation, queryParams) => {
   let data = [];
 
   querySnapShot.forEach((doc) => {
-    data.push({ docID: doc.id, data: doc.data() });
+    data.push({ docID: doc.id, ...doc.data() });
   });
 
   return data;

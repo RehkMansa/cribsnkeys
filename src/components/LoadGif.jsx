@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: ${(props) => props.bgWidth};
-  height: ${(props) => props.bgHeight};
+  width: ${(props) => props.bgWidth} !important;
+  height: ${(props) => props.bgHeight} !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LoadGif = ({ width, height }) => {

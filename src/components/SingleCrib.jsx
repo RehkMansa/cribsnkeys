@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin-top: 40px;
-  max-height: 600px;
+  // max-height: ${(props) => (props.itemHeight ? props.itemHeight : '600px')};
   overflow: auto;
   text-transform: capitalize;
   width: 100%;
@@ -108,12 +108,13 @@ const Header = styled.div`
   }
 `;
 const SingleCrib = (props) => {
-  const { title, imgURL, agent, location, price, desc, amenities } = props;
+  const { title, imgURL, agent, location, price, desc, amenities, height } =
+    props;
   const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   return (
-    <Wrapper {...props}>
+    <Wrapper itemHeight={height} {...props}>
       <Header>
         <div className="details">
           <h3 style={{ fontSize: 25 }}>{title}</h3>
