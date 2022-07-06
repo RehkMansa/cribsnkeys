@@ -26,7 +26,7 @@ export const RightContainer = styled.div`
 `;
 
 const Container = styled.div`
-  // min-width: 100vw !important;
+  min-width: 100vw !important;
 `;
 
 const HomePage = (props) => {
@@ -35,7 +35,7 @@ const HomePage = (props) => {
       <Container>
         <LeftContainer
           overlayValue={'rgba(0, 0, 0, 0.45)'}
-          bgImage={'home-bg-left.jpg'}
+          bgImage={'bg-home.jpg'}
           content={<HomeSearch />}
           position="center top"
         />
