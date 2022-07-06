@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import styledComponents from 'styled-components';
 import AgentCard from './components/AgentCard';
 import AgentsPage from './components/AgentsPage';
+import CribCard from './components/CribCard';
 import Cribs from './components/Cribs';
 import Error404 from './components/Error404';
 import { auth, checkUserDB } from './components/firebase/utils';
@@ -66,11 +67,12 @@ function App() {
           }
         />
         <Route path="/user" element={<UserPage userData={currentUser} />} />
-        <Route path="/cribs/*" element={<Cribs userData={currentUser} />} />
+        <Route path="/cribs" element={<Cribs userData={currentUser} />} />
         <Route
-          path="/agents/*"
-          element={<AgentsPage userData={currentUser} />}
+          path="/cribs/:id"
+          element={<CribCard userData={currentUser} />}
         />
+        <Route path="/agents" element={<AgentsPage userData={currentUser} />} />
         <Route
           path="/agents/:id"
           element={<AgentCard userData={currentUser} />}

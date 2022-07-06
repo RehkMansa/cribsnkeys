@@ -16,7 +16,7 @@ const ContentWrap = styled.div`
 
 const RightCard = styled.div`
   display: flex;
-  padding: 100px 5%;
+  padding: 80px 5%;
   position: relative;
   // align-items: center;
   // justify-content: center;

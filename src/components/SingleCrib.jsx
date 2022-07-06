@@ -101,6 +101,7 @@ const ListingDetails = styled.div`
       text-transform: none;
     }
   }
+
 `;
 const Header = styled.div`
   padding: 20px 0;
@@ -115,6 +116,10 @@ const Header = styled.div`
     align-items: start;
     flex-direction: column;
     gap: 20px;
+  }
+
+  button {
+    border-radius: 20px;
   }
 `;
 const SingleCrib = (props) => {
@@ -152,7 +157,7 @@ const SingleCrib = (props) => {
             </div>
           </div>
         </div>
-        {!onClickFunc && <button onClick={onClickFunc}>View Crib</button>}
+        {onClickFunc && <button onClick={onClickFunc}>View Crib</button>}
       </Header>
       <ListingDetails>
         <img src={imgURL} alt={title} />

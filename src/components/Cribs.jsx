@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { RightContainer, Wrapper } from './HomePage';
 import LeftContainer from './LeftContainer';
 import CreateCrib from './CreateCrib';
@@ -24,6 +24,7 @@ const Cribs = ({ userData }) => {
   const [currentCrib, setCurrentCrib] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
   const [countVar, setCountVar] = useState(1);
+  const navigate = useNavigate();
   useEffect(() => {
     setShowLoader(true);
     fetchAll('cribs').then((res) => {
@@ -58,6 +59,9 @@ const Cribs = ({ userData }) => {
                     price={cribs.price}
                     desc={cribs.desc}
                     amenities={cribs.amenities}
+                    onClickFunc={() => {
+                      navigate(cribs.snapID, { state: cribs });
+                    }}
                   />
                 ))}
               </CribWrapper>
