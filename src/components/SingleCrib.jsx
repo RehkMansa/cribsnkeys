@@ -34,6 +34,12 @@ const Wrapper = styled.div`
   .username {
     text-transform: none;
   }
+
+  @media (max-width: 600px) {
+    .uDiv {
+      flex-wrap: wrap;
+    }
+  }
 `;
 const AgentCard = styled.div`
   display: flex;
@@ -115,6 +121,15 @@ const Header = styled.div`
   button {
     border-radius: 20px;
   }
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    gap: 20px;
+
+    button{
+      width: 100%;
+    }
+  }
 `;
 const SingleCrib = (props) => {
   const {
@@ -159,7 +174,7 @@ const SingleCrib = (props) => {
           <p>{desc}</p>
         </div>
       </ListingDetails>
-      <AgentInner className="row">
+      <AgentInner className="row uDiv">
         {amenities.length >= 0 && amenities !== '' ? (
           <div className="grid-row">
             {amenities.map((amenity, n) => (
@@ -175,7 +190,7 @@ const SingleCrib = (props) => {
         <AgentCard>
           <img src={agent.image} alt={agent.displayName} />
           <div className="details-inner column">
-            <div className="icon-holder">
+            <div className="icon-holder uDiv">
               <p className="username">{agent.displayName}</p>
               <MdVerified />
             </div>

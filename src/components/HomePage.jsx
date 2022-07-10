@@ -8,6 +8,14 @@ export const Wrapper = styled.section`
   & > div {
     width: 50%;
   }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    // gap: 50px;
+    & > div {
+      width: 100%;
+    }
+  }
 `;
 export const RightContainer = styled.div`
   display: flex;
@@ -22,6 +30,10 @@ export const RightContainer = styled.div`
 
   h3 {
     font-size: 50px;
+  }
+
+  @media (max-width: 600px) {
+    order: ;
   }
 `;
 

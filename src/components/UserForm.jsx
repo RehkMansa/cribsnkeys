@@ -21,6 +21,22 @@ const FormWrapper = styled.form`
     border-radius: 10px;
     color: #000;
   }
+
+  @media (max-width: 600px) {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    justify-content:center;
+
+    & >*{
+      width: 100%;
+    }
+
+    h3{
+      font-size: 30px;
+    }
+  }
 `;
 
 const Row = styled.div`

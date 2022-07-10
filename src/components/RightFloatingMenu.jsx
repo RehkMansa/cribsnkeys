@@ -14,6 +14,7 @@ import { toggleStateVar } from './utils/helpers';
 
 const Wrapper = styled.div`
   display: flex;
+  // flex-wrap: wrap;
   gap: 10px;
   color: ${(props) => (props.color ? 'var(--gold)' : 'var(--blue)')};
   background-color: ${(props) => (props.color ? props.color : 'var(--gold)')};
@@ -22,6 +23,17 @@ const Wrapper = styled.div`
   position: absolute;
   top: 30px;
   right: 20px;
+  z-index: 3;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: transparent;
+
+    & > * {
+      width: calc(35% - 20px);
+    }
+  }
 `;
 
 const RightFloatingMenu = ({ loginState, setLogin, user, bgColor }) => {

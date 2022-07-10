@@ -11,6 +11,7 @@ const Section = styled.div`
   padding: 100px 5%;
   position: relative;
   overflow: scroll;
+  margin-top: 50px;
 
   .header {
     span {
@@ -26,6 +27,10 @@ const Section = styled.div`
     a {
       color: var(--gold);
     }
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 80px;
   }
 `;
 
@@ -44,6 +49,17 @@ const Content = styled.div`
 
   & > * {
     width: calc(50% - 50px);
+  }
+
+  @media (max-width: 600px) {
+    & > * {
+      width: 100%;
+    }
+  }
+  @media (max-width: 996px) {
+    & > * {
+      width: 100%;
+    }
   }
 `;
 

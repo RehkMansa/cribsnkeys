@@ -62,7 +62,6 @@ const HomeSearch = () => {
           onChange={(e) => {
             setDays(e.target.value);
           }}
-          required
           value={days}
           placeHolder={'Number Of Days'}
         />
@@ -70,7 +69,6 @@ const HomeSearch = () => {
           onChange={(e) => {
             setGuests(e.target.value);
           }}
-          required
           value={guests}
           placeHolder={'Number Of Guests'}
         />

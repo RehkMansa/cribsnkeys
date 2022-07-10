@@ -19,6 +19,12 @@ const Container = styled.div`
     height: 100%;
     background-color: ${(props) => props.overlay};
   }
+
+  @media (max-width: 600px) {
+    height: auto;
+    min-height: fit-content;
+    max-height: fit-content;
+  }
 `;
 
 const Content = styled.div`
@@ -28,13 +34,19 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   overflow: auto;
+  margin-top: 50px;
+
+  h3 {
+    font-size: 40px;
+    line-height: 50px;
+  }
 `;
 
 const LeftContainer = ({ bgImage, content, overlayValue, position }) => {
   return (
     <Container imgPosition={position} bgImage={bgImage} overlay={overlayValue}>
-      <div className="overlay"></div>
       <Content>{content}</Content>
+      <div className="overlay"></div>
     </Container>
   );
 };

@@ -25,6 +25,7 @@ a {
   background-repeat: no-repeat;
   background-position: top right;
   background-size: 75%;
+  min-height: fit-content;
   /* text-transform: /; */
 }
 

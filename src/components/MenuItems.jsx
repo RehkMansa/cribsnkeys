@@ -10,6 +10,14 @@ const Wrapper = styled.div`
   border-radius: 20px;
   cursor: pointer;
   box-shadow: inset 0 0 10px rgba(7, 12, 31, 0.1);
+
+  @media (max-width: 600px) {
+    padding: 7px;
+    background-color: var(--gold);
+  }
+  @media (max-width: 400px) {
+    font-size: 15px;
+  }
 `;
 
 const MenuItems = ({ icon, title, link, clickFunc }) => {

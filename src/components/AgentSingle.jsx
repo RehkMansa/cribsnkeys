@@ -47,6 +47,15 @@ const Header = styled.div`
     font-weight: 700;
     line-height: 1;
   }
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    justify-content: center;
+   h2{
+    font-size: 35px;
+    text-align: center;
+   }
+  }
 `;
 
 const Details = styled.div``;
@@ -67,6 +76,10 @@ const DetailsInner = styled.div`
     font-size: 18px;
     font-family: 'Karla', sans-serif;
     margin: 10px 0;
+  }
+
+  button{
+    margin-top: 20px;
   }
 `;
 const IconWrapper = styled.div`
