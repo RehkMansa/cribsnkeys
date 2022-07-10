@@ -31,6 +31,14 @@ export const RightContainer = styled.div`
   gap: 20px;
   height: 100vh;
 
+  button {
+    margin-top: 20px;
+  }
+  @media (max-width: 600px) {
+    height: auto;
+    padding: 50px 20px 70px;
+  }
+
   h3 {
     font-size: 50px;
   }

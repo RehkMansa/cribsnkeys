@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { randomInt } from './utils/helpers';
 
 const Wrapper = styled.div`
-  width: ${(props) => (props.bgWidth ? props.bgWidth : '100%')};
+  width: 100%;
   padding-bottom: 20px;
   text-transform: capitalize;
   &::-webkit-scrollbar {
@@ -29,6 +29,11 @@ const Wrapper = styled.div`
       font-family: karla;
     }
   }
+
+  @media (max-width: 965px) {
+    max-height: 100%;
+    padding-left: 20px;
+  }
 `;
 
 const Header = styled.div`
@@ -47,14 +52,17 @@ const Header = styled.div`
     font-weight: 700;
     line-height: 1;
   }
+  @media (max-width: 965px) {
+    flex-wrap: wrap;
+  }
 
   @media (max-width: 600px) {
     flex-wrap: wrap;
     justify-content: center;
-   h2{
-    font-size: 35px;
-    text-align: center;
-   }
+    h2 {
+      font-size: 35px;
+      text-align: center;
+    }
   }
 `;
 

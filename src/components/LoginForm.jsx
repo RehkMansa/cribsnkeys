@@ -36,6 +36,9 @@ const FormWrapper = styled.form`
       color: var(--gold);
     }
   }
+  @media (max-width: 550px) {
+    width: 100%;
+  }
 `;
 const LoginForm = ({ loginState, setLoginState, showLogin }) => {
   const [email, setEmail] = useState('');

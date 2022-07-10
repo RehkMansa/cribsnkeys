@@ -55,6 +55,16 @@ const AgentCard = styled.div`
   @media (max-width: 965px) {
     flex-wrap: wrap;
   }
+  @media (max-width: 385px) {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .details-inner {
+      border: 1px solid red;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 `;
 
 const AgentInner = styled.div`

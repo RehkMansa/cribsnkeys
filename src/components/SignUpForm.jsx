@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const FormWrapper = styled.form`
   display: flex;
-  width: 500px;  
+  width: 500px;
   flex-direction: column;
   gap: 20px;
 
@@ -39,6 +39,10 @@ const FormWrapper = styled.form`
       cursor: pointer;
       color: var(--gold);
     }
+  }
+
+  @media (max-width: 550px) {
+    width: 100%;
   }
 `;
 const SignUpForm = ({ loginState, setLoginState, showLogin }) => {

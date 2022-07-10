@@ -45,6 +45,10 @@ const FormWrapper = styled.form`
     display: flex;
     gap: 10px;
   }
+
+  @media (max-width: 600px) {
+    margin-top: 60px;
+  }
 `;
 const AmenitiesForm = styled.div`
   display: flex;
