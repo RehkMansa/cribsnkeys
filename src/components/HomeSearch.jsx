@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  createSearchParams,
-  useNavigate,
-} from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputElement from './InputElement';
 

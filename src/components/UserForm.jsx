@@ -48,6 +48,7 @@ const Row = styled.div`
     position: absolute;
     right: 20px;
     top: 13px;
+    text-align: center;
     font-family: karla;
     font-weight: 500;
     color: var(--grey);

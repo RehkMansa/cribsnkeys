@@ -43,16 +43,22 @@ export const RightContainer = styled.div`
     font-size: 50px;
   }
 `;
+
+const Container = styled.div`
+  width: 100vw !important;
+`;
 const HomePage = () => {
   return (
     <Wrapper>
-      <LeftContainer
-        className="redefine-me"
-        overlayValue={'rgba(0, 0, 0, 0.45)'}
-        bgImage={'bg-home.jpg'}
-        content={<HomeSearch />}
-        position="center top"
-      />
+      <Container>
+        <LeftContainer
+          className="redefine-me"
+          overlayValue={'rgba(0, 0, 0, 0.45)'}
+          bgImage={'bg-home.jpg'}
+          content={<HomeSearch />}
+          position="center top"
+        />
+      </Container>
     </Wrapper>
   );
 };

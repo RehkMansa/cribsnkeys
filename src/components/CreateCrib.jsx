@@ -72,6 +72,7 @@ const AmenitiesForm = styled.div`
     padding: 5px 10px;
     border-radius: 20px;
     width: auto;
+    text-align: center;
   }
 `;
 const Row = styled.div`
@@ -83,6 +84,7 @@ const Row = styled.div`
     position: absolute;
     right: 15px;
     top: 27%;
+    text-align: center;
     font-family: karla;
     font-weight: 500;
     color: rgba(70, 70, 70, 0.89);

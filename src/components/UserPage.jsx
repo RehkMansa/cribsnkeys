@@ -34,6 +34,14 @@ const ProfileCard = styled.div`
     object-fit: cover;
     border-radius: 50%;
   }
+
+  @media (max-width: 600px) {
+    h3 {
+      font-size: 30px;
+    }
+
+    font-size: 16px;
+  }
 `;
 
 const UserPage = ({ userData }) => {

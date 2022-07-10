@@ -60,7 +60,6 @@ const AgentCard = styled.div`
     justify-content: center;
 
     .details-inner {
-      border: 1px solid red;
       justify-content: center;
       align-items: center;
     }

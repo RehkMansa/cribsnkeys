@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   h3 {
     font-size: 60px;
     margin-bottom: 20px;
+    line-height: 1.2;
   }
 
   @media (max-width: 600px) {
@@ -20,6 +21,11 @@ const Wrapper = styled.div`
 
     h3 {
       font-size: 30px;
+    }
+  }
+  @media (max-width: 970px) {
+    h3 {
+      font-size: 45px;
     }
   }
 
