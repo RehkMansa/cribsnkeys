@@ -78,8 +78,10 @@ const DetailsInner = styled.div`
     margin: 10px 0;
   }
 
-  button{
-    margin-top: 20px;
+  @media (max-width: 600px) {
+    button {
+      margin-top: 20px;
+    }
   }
 `;
 const IconWrapper = styled.div`

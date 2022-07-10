@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const FormWrapper = styled.form`
   display: flex;
-  width: 500px;
+  width: 500px;  
   flex-direction: column;
   gap: 20px;
 

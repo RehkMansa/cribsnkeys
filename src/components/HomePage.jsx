@@ -11,10 +11,13 @@ export const Wrapper = styled.section`
 
   @media (max-width: 600px) {
     flex-direction: column;
-    // gap: 50px;
     & > div {
       width: 100%;
     }
+  }
+
+  .redefine-me {
+    height: 100vh;
   }
 `;
 export const RightContainer = styled.div`
@@ -31,30 +34,17 @@ export const RightContainer = styled.div`
   h3 {
     font-size: 50px;
   }
-
-  @media (max-width: 600px) {
-    order: ;
-  }
 `;
-
-const Container = styled.div`
-  min-width: 100vw !important;
-`;
-
-const HomePage = (props) => {
+const HomePage = () => {
   return (
     <Wrapper>
-      <Container>
-        <LeftContainer
-          overlayValue={'rgba(0, 0, 0, 0.45)'}
-          bgImage={'bg-home.jpg'}
-          content={<HomeSearch />}
-          position="center top"
-        />
-      </Container>
-      <RightContainer>
-        <h3>My Head oo</h3>
-      </RightContainer>
+      <LeftContainer
+        className="redefine-me"
+        overlayValue={'rgba(0, 0, 0, 0.45)'}
+        bgImage={'bg-home.jpg'}
+        content={<HomeSearch />}
+        position="center top"
+      />
     </Wrapper>
   );
 };

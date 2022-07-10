@@ -15,6 +15,14 @@ const Wrapper = styled.div`
     margin-bottom: 20px;
   }
 
+  @media (max-width: 600px) {
+    height: 300px;
+
+    h3 {
+      font-size: 30px;
+    }
+  }
+
   a {
     padding: 10px 30px;
     border: 2px solid var(--gold);

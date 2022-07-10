@@ -72,7 +72,7 @@ const UserPage = ({ userData }) => {
           <LeftContainer
             bgImage={'smiling-agent.jpg'}
             overlayValue={'rgba(0, 0, 0, 0.4)'}
-            content={<UserForm user={userData} width={'80%'} />}
+            content={<UserForm user={userData} />}
           />
           <RightContainer>
             {showLoader ? (

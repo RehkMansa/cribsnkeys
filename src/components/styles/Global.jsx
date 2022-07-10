@@ -26,6 +26,13 @@ const GlobalStyles = createGlobalStyle`
     position: relative;
     background-color: var(--blue);
   }
+  p{
+    font-size: 18px;
+    line-height: 24px;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
   * {
     margin: 0;
     padding: 0;

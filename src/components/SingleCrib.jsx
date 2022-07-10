@@ -35,7 +35,7 @@ const Wrapper = styled.div`
     text-transform: none;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 965px) {
     .uDiv {
       flex-wrap: wrap;
     }
@@ -51,6 +51,9 @@ const AgentCard = styled.div`
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+  }
+  @media (max-width: 965px) {
+    flex-wrap: wrap;
   }
 `;
 
@@ -122,11 +125,11 @@ const Header = styled.div`
     border-radius: 20px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 965px) {
     flex-wrap: wrap;
     gap: 20px;
 
-    button{
+    button {
       width: 100%;
     }
   }
@@ -147,7 +150,7 @@ const SingleCrib = (props) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
   return (
-    <Wrapper itemHeight={height} {...props}>
+    <Wrapper itemHeight={height}>
       <Header>
         <div className="details">
           <h3 style={{ fontSize: 25 }}>{title}</h3>

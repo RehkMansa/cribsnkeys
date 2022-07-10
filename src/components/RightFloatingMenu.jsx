@@ -21,12 +21,14 @@ const Wrapper = styled.div`
   padding: 10px;
   border-radius: 50px;
   position: absolute;
-  top: 30px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   z-index: 3;
 
   @media (max-width: 600px) {
     flex-wrap: wrap;
+    top:0;
+    right:0;
     justify-content: center;
     background-color: transparent;
 
